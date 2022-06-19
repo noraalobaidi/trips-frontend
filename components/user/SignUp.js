@@ -2,12 +2,12 @@ import {
   Text,
   View,
   SafeAreaView,
-  Button,
   StyleSheet,
   TouchableOpacity,
   TextInput,
 } from "react-native";
 import { useState } from "react";
+import usersStore from "../../stores/UsersStore";
 
 export function SignUp() {
   const [username, setUsername] = useState("");
@@ -37,8 +37,59 @@ export function SignUp() {
           onChangeText={(password) => setPassword(password)}
         />
       </View>
-      <TouchableOpacity style={styles.submitButton} onPress={() => {}}>
-        <Text style={styles.submitButtonText}> Submit </Text>
+      <TouchableOpacity
+        style={styles.submitButton}
+        onPress={() => {
+          const user = { username: username, password: password };
+          usersStore.signup(user);
+          setPassword("");
+          setUsername("");
+        }}
+      >
+        <Text style={styles.submitButtonText}> Sign up </Text>
+      </TouchableOpacity>
+    </SafeAreaView>
+  );
+}
+
+export function SignIn() {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
+  return (
+    <SafeAreaView>
+      <View style={styles.container}>
+        <Text style={styles.welcome}>WELCOME BACK!</Text>
+        <TextInput
+          style={styles.input}
+          underlineColorAndroid="transparent"
+          placeholder="Enter username"
+          label="username"
+          value={username}
+          autoCapitalize="none"
+          onChangeText={(username) => setUsername(username)}
+        />
+
+        <TextInput
+          style={styles.input}
+          underlineColorAndroid="transparent"
+          placeholder="Enter password"
+          label="password"
+          value={password}
+          autoCapitalize="none"
+          onChangeText={(password) => setPassword(password)}
+        />
+      </View>
+      <TouchableOpacity
+        style={styles.submitButton}
+        onPress={() => {
+          const user = { username: username, password: password };
+          usersStore.signin(user);
+          setPassword("");
+          setUsername("");
+        }}
+      >
+        <Text style={styles.submitButtonText}> Sign in </Text>
       </TouchableOpacity>
     </SafeAreaView>
   );
