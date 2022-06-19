@@ -2,8 +2,11 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 
+
 //screens
 import MainProfile from "../profile/MainProfile";
+import UpdateProfile from "../profile/UpdateProfile";
+import UpdateProfileButton from "../profile/UpdateProfileButton"
 
 
 const { Navigator, Screen } = createStackNavigator();
@@ -17,15 +20,15 @@ export default function StackNavigator() {
         options={{
           headerStyle: { backgroundColor: "#547AA5" },
           headerTintColor: "white",
-        //   headerRight: () => ,
+          headerRight: () => <UpdateProfileButton/>,
         }}
       />
       <Screen
         name="UpdateProfile"
-        component={MainProfile}
+        component={UpdateProfile}
         options={{
-          headerStyle: { backgroundColor: "white" },
-          headerTintColor: "#375C81",
+            headerStyle: { backgroundColor: "#547AA5" },
+            headerTintColor: "white",
           title:"Update Profile",
         }}
       />
