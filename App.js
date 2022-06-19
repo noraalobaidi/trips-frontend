@@ -1,19 +1,28 @@
-import { StyleSheet, View } from "react-native";
+import { StatusBar } from 'expo-status-bar';
+import { StyleSheet, Text, View } from 'react-native';
+import MainProfile from './MainProfile';
+import { NativeBaseProvider} from 'native-base';
 import { SignUp } from "./components/user/SignUp";
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <SignUp />
-    </View>
-  );
+    <NativeBaseProvider><View style={styles.container}>
+
+    <MainProfile/>
+    <StatusBar style="auto" />
+  </View>
+  </NativeBaseProvider>)
 }
+
+
+
+
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    // justifyContent: 'center',
   },
 });
