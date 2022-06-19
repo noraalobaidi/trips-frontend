@@ -2,6 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import MainProfile from './MainProfile';
 import { NativeBaseProvider} from 'native-base';
+import { SignUp } from "./components/user/SignUp";
 
 export default function App() {
   return (
@@ -10,10 +11,12 @@ export default function App() {
     <MainProfile/>
     <StatusBar style="auto" />
   </View>
-  </NativeBaseProvider>
-    
-  );
+  </NativeBaseProvider>)
 }
+
+
+
+
 
 const styles = StyleSheet.create({
   container: {
