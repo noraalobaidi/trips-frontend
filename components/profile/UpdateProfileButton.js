@@ -4,6 +4,7 @@ import { TouchableOpacity } from 'react-native-gesture-handler'
 import { useNavigation } from '@react-navigation/native';
 import { Button } from "native-base";
 
+
 export default function UpdateProfileButton() {
     const navigation = useNavigation();
   return (

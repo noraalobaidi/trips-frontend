@@ -7,6 +7,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import MainProfile from "../profile/MainProfile";
 import UpdateProfile from "../profile/UpdateProfile";
 import UpdateProfileButton from "../profile/UpdateProfileButton"
+import { SignUp } from "../user/SignUp";
 
 
 const { Navigator, Screen } = createStackNavigator();
