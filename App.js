@@ -1,17 +1,19 @@
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, Text, View } from "react-native";
-import MainProfile from "./MainProfile";
+import MainProfile from "./components/profile/MainProfile";
 import { NativeBaseProvider } from "native-base";
-import { SignIn, SignUp } from "./components/user/SignUp";
+
+//navigation
+import { NavigationContainer } from "@react-navigation/native";
+import StackNavigator from "./components/Navigation/StackNavigation";
+import BottomTabNavigator from "./components/Navigation/BottomTabNavigation";
 
 export default function App() {
   return (
     <NativeBaseProvider>
-      <View style={styles.container}>
-        <SignIn />
-        {/* <MainProfile /> */}
-        <StatusBar style="auto" />
-      </View>
+      <NavigationContainer>
+        <BottomTabNavigator />
+      </NavigationContainer>
     </NativeBaseProvider>
   );
 }
