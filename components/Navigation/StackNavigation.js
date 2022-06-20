@@ -5,6 +5,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import MainProfile from "../profile/MainProfile";
 import UpdateProfile from "../profile/UpdateProfile";
 import UpdateProfileButton from "../profile/UpdateProfileButton";
+// import { SignUp } from "../authentication/SignUp";
 import SignIn from "../authentication/SignIn";
 import SignUp from "../authentication/SignUp";
 import MainAccountPage from "../authentication/MainAccountPage";
