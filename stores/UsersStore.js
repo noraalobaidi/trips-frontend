@@ -58,6 +58,10 @@ class UserStore {
       else this.signout();
     }
   };
+
+  calcTotalTrips(trips){
+    return trips.length;
+      }
 }
 
 const userStore = new UserStore();
