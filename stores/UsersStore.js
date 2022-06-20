@@ -7,8 +7,30 @@ class UserStore {
   constructor() {
     makeAutoObservable(this);
   }
+  users=[];
   user = null;
 
+
+  fetchUsers = async () => {
+    try {
+
+      const response = await instance.get("/user");
+      this.users = response.data;
+
+      console.log(response.data);
+    } catch (error) {
+      console.log("UserStore -> fetchUsers -> error", error);
+    }
+  };
+getUserProfile = ()=>{
+
+    const founduser= this.users.filter((userr) => this.user._id == userr._id);
+console.log("getting user from users "+founduser);
+const profile=founduser.profile;
+return profile;
+  
+
+};
   signup = async (userData) => {
     try {
       const response = await instance.post("/signup", userData);
@@ -48,6 +70,7 @@ class UserStore {
     await AsyncStorage.setItem("token", userToken);
     instance.defaults.headers.common.Authorization = `Bearer ${userToken}`;
     this.user = jwt_decode(userToken);
+    console.log("userrrr "+Object.entries(this.user))
   };
 
   checkForToken = async () => {
@@ -66,4 +89,5 @@ class UserStore {
 
 const userStore = new UserStore();
 userStore.checkForToken();
+userStore.fetchUsers();
 export default userStore;
