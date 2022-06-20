@@ -1,5 +1,5 @@
 import { makeAutoObservable } from "mobx";
-import instance from "./instance";
+import instance from "../instance/instance";
 
 class TripsStore {
   constructor() {
