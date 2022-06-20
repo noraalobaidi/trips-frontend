@@ -44,7 +44,7 @@ export default function BottomTabNavigator() {
       />
       <Tab.Screen
         name="Profile"
-        component={MainProfile}
+        component={StackNavigator}
         options={{
           tabBarLabel: "Profile",
           tabBarIcon: ({ color, size }) => (
