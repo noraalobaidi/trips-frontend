@@ -15,8 +15,12 @@ class TripsStore {
       console.error("fetchingerror", error);
     }
   };
+
+  getTrips = async () => {
+    return this.trips;
+  };
 }
 
 const tripsStore = new TripsStore();
-// tripsStore.fetchTrips();
+tripsStore.fetchTrips();
 export default tripsStore;

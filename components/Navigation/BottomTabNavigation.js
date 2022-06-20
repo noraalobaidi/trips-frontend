@@ -4,6 +4,7 @@ import { Fontisto } from "@expo/vector-icons";
 import TripList from "../trip/TripList";
 import MainProfile from "../profile/MainProfile";
 import StackNavigator from "./StackNavigation";
+import TripsStackNavigator from "./TripsStackNavigation";
 
 const Tab = createBottomTabNavigator();
 
