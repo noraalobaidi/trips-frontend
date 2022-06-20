@@ -43,7 +43,7 @@ export default function BottomTabNavigator() {
         }}
       />
       <Tab.Screen
-        name="Profile"
+        name="MainProfile"
         component={StackNavigator}
         options={{
           tabBarLabel: "Profile",

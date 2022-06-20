@@ -2,7 +2,7 @@ import { View, Text,StyleSheet } from 'react-native';
 import {Image} from "native-base";
 import React from 'react';
 import profile from "../../mainProfileData";
-import UserStore from "../../UserStore"
+import UserStore from "../../stores/UsersStore"
 
 export default function MainProfile() {
   return (
@@ -14,7 +14,7 @@ export default function MainProfile() {
       {/* <Text>{UserStore.calcTotalTrips(profile[0].trips)}</Text> */}
       <View style={styles.box}>
         <Text style={styles.trips}>Trips</Text>
-        <Text style={{fontSize:16,color:"black"}}>{UserStore.calcTotalTrips(profile[0].trips)}</Text>
+        <Text style={{fontSize:16,color:"black"}}>{UserStore.calcTotalTrips((profile[0].trips))}</Text>
       </View>
         </View>
       
