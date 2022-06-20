@@ -9,9 +9,11 @@ import {
 import { useState } from "react";
 import usersStore from "../../stores/UsersStore";
 
-export function SignUp() {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+export function SignIn() {
+  const [user, setUser] = useState({
+    username: "",
+    password: "",
+  });
 
   return (
     <SafeAreaView>
@@ -22,9 +24,9 @@ export function SignUp() {
           underlineColorAndroid="transparent"
           placeholder="Enter username"
           label="username"
-          value={username}
+          value={user.username}
           autoCapitalize="none"
-          onChangeText={(username) => setUsername(username)}
+          onChangeText={(username) => setUser({ ...user, username })}
         />
 
         <TextInput
@@ -32,61 +34,20 @@ export function SignUp() {
           underlineColorAndroid="transparent"
           placeholder="Enter password"
           label="password"
-          value={password}
+          secureTextEntry={true}
+          value={user.password}
           autoCapitalize="none"
-          onChangeText={(password) => setPassword(password)}
+          onChangeText={(password) => setUser({ ...user, password })}
         />
       </View>
       <TouchableOpacity
         style={styles.submitButton}
-        onPress={() => {
-          const user = { username: username, password: password };
-          usersStore.signup(user);
-          setPassword("");
-          setUsername("");
-        }}
-      >
-        <Text style={styles.submitButtonText}> Sign up </Text>
-      </TouchableOpacity>
-    </SafeAreaView>
-  );
-}
-
-export function SignIn() {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-
-  return (
-    <SafeAreaView>
-      <View style={styles.container}>
-        <Text style={styles.welcome}>WELCOME BACK!</Text>
-        <TextInput
-          style={styles.input}
-          underlineColorAndroid="transparent"
-          placeholder="Enter username"
-          label="username"
-          value={username}
-          autoCapitalize="none"
-          onChangeText={(username) => setUsername(username)}
-        />
-
-        <TextInput
-          style={styles.input}
-          underlineColorAndroid="transparent"
-          placeholder="Enter password"
-          label="password"
-          value={password}
-          autoCapitalize="none"
-          onChangeText={(password) => setPassword(password)}
-        />
-      </View>
-      <TouchableOpacity
-        style={styles.submitButton}
-        onPress={() => {
-          const user = { username: username, password: password };
-          usersStore.signin(user);
-          setPassword("");
-          setUsername("");
+        onPress={async () => {
+          await usersStore.signin(user);
+          setUser({
+            username: "",
+            password: "",
+          });
         }}
       >
         <Text style={styles.submitButtonText}> Sign in </Text>
