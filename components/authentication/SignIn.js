@@ -9,7 +9,7 @@ import {
 import { useState } from "react";
 import usersStore from "../../stores/UsersStore";
 
-export function SignIn() {
+export default function SignIn({ navigation }) {
   const [user, setUser] = useState({
     username: "",
     password: "",
@@ -18,7 +18,6 @@ export function SignIn() {
   return (
     <SafeAreaView>
       <View style={styles.container}>
-        <Text style={styles.welcome}>WELCOME!</Text>
         <TextInput
           style={styles.input}
           underlineColorAndroid="transparent"
@@ -48,6 +47,7 @@ export function SignIn() {
             username: "",
             password: "",
           });
+          navigation.navigate("Profile");
         }}
       >
         <Text style={styles.submitButtonText}> Sign in </Text>

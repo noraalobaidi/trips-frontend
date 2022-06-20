@@ -1,5 +1,5 @@
 import { makeAutoObservable } from "mobx";
-import instance from "./instance";
+import instance from "../instance/instance";
 import jwt_decode from "jwt-decode";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
@@ -26,10 +26,9 @@ class UserStore {
   signin = async (userData) => {
     try {
       const res = await instance.post("/signin", userData);
-      this.user = jwt_decode(res.data.token);
-      instance.defaults.headers.common.Authorization = `Bearer ${res.data.token}`;
+      // this.user = jwt_decode(res.data.token);
+      // instance.defaults.headers.common.Authorization = `Bearer ${res.data.token}`;
       this.setUser(res.data.token);
-      alert("Welcome back!");
     } catch (error) {
       alert("Incorrect username or password");
     }
