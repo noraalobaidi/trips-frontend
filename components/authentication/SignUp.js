@@ -9,7 +9,7 @@ import {
 import { useState } from "react";
 import usersStore from "../../stores/UsersStore";
 
-export function SignUp() {
+export default function SignUp({ navigation }) {
   const [user, setUser] = useState({
     username: "",
     password: "",
@@ -18,7 +18,6 @@ export function SignUp() {
   return (
     <SafeAreaView>
       <View style={styles.container}>
-        <Text style={styles.welcome}>WELCOME!</Text>
         <TextInput
           style={styles.input}
           underlineColorAndroid="transparent"
@@ -61,6 +60,7 @@ const styles = StyleSheet.create({
     paddingTop: 23,
     width: 300,
   },
+
   input: {
     margin: 15,
     padding: 7,
@@ -82,6 +82,24 @@ const styles = StyleSheet.create({
     padding: 10,
     margin: 15,
     height: 40,
+    borderRadius: 12,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 3,
+    },
+    shadowOpacity: 0.29,
+    shadowRadius: 4.65,
+
+    elevation: 7,
+  },
+
+  signInButton: {
+    backgroundColor: "#547AA5",
+    padding: 10,
+    margin: 15,
+    height: 40,
+    maxWidth: 100,
     borderRadius: 12,
     shadowColor: "#000",
     shadowOffset: {
