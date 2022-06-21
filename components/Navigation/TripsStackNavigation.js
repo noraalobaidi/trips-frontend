@@ -1,6 +1,7 @@
 import { createStackNavigator } from "@react-navigation/stack";
 import TripDetails from "../trip/TripDetails";
 import TripList from "../trip/TripList";
+import ViewProfile from "../profile/ViewProfile"
 
 const { Navigator, Screen } = createStackNavigator();
 
@@ -18,6 +19,10 @@ export default function TripsStackNavigator() {
     >
       <Screen name="Trips" component={TripList} />
       <Screen name="Detail" component={TripDetails} />
+      <Screen name="creatorProfile" component={ViewProfile}
+      options={({ route }) => ({
+          title: route.params.user.username,
+        })}/>
     </Navigator>
   );
 }

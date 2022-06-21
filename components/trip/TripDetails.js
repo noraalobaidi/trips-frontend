@@ -7,20 +7,26 @@ import {
   SafeAreaView,
   StyleSheet,
 } from "react-native";
+import { TouchableOpacity } from "react-native-gesture-handler";
 import tripsStore from "../../stores/tripsStore";
 import userStore from "../../stores/UsersStore";
 
-export default function TripDetails({ route }) {
+export default function TripDetails({ route ,navigation}) {
   const { itemId } = route.params;
   const trip = tripsStore.getTripById(itemId);
   const user = userStore.getUserById(trip.user);
+  // console.log("userrrrr "+Object.entries(user));
   return (
     <SafeAreaView>
       <ScrollView>
         <Image style={styles.image} source={{ uri: trip.image }} />
         <View style={styles.infoContainer}>
           <Text style={styles.name}>{trip.title}</Text>
-          <Text style={styles.user}>{user.username}</Text>
+          <TouchableOpacity onPress={() =>
+          navigation.navigate("creatorProfile", { user: user ,id:user._id})
+        }>
+            <Text style={styles.user}>{user.username}</Text>
+            </TouchableOpacity>
           <Text style={styles.description}>{trip.description}</Text>
         </View>
       </ScrollView>
