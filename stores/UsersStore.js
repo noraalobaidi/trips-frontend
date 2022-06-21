@@ -53,7 +53,7 @@ class UserStore {
     try {
       delete instance.defaults.headers.common.Authorization;
       await AsyncStorage.removeItem("token");
-      this.user = null;
+      // this.user = null;
     } catch (error) {
       console.error(error);
     }

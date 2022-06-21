@@ -51,6 +51,7 @@ function UpdateProfile() {
           autoCapitalize="none"
           editable={false}
           onChangeText={(usernamee) => setInput({...input, username: usernamee})}
+          
         />
         <Text>Bio</Text>
          <TextInput
@@ -60,6 +61,7 @@ function UpdateProfile() {
           label="bio"
           autoCapitalize="none"
           onChangeText={(bioo) => setInput({...input, bio: bioo})}
+          defaultValue={input.bio}
         />
          <TouchableOpacity
         style={styles.submitButton}
@@ -78,7 +80,7 @@ export default observer (UpdateProfile);
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: 23,
+    padding: 30,
     width: 300,
   },
   input: {
