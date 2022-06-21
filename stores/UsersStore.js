@@ -1,4 +1,4 @@
-import { makeAutoObservable } from "mobx";
+import { makeAutoObservable ,runInAction} from "mobx";
 import instance from "../instance/instance";
 import jwt_decode from "jwt-decode";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -7,7 +7,22 @@ class UserStore {
   constructor() {
     makeAutoObservable(this);
   }
+  users=[];
   user = null;
+  profile=null;
+
+
+  fetchUsers = async () => {
+    try {
+
+      const response = await instance.get("/user");
+      this.users = response.data;
+
+      console.log(response.data);
+    } catch (error) {
+      console.log("UserStore -> fetchUsers -> error", error);
+    }
+  };
 
   signup = async (userData) => {
     try {
@@ -38,7 +53,7 @@ class UserStore {
     try {
       delete instance.defaults.headers.common.Authorization;
       await AsyncStorage.removeItem("token");
-      this.user = null;
+      // this.user = null;
     } catch (error) {
       console.error(error);
     }
@@ -48,6 +63,7 @@ class UserStore {
     await AsyncStorage.setItem("token", userToken);
     instance.defaults.headers.common.Authorization = `Bearer ${userToken}`;
     this.user = jwt_decode(userToken);
+    console.log("userrrr "+Object.entries(this.user))
   };
 
   checkForToken = async () => {
@@ -58,8 +74,24 @@ class UserStore {
       else this.signout();
     }
   };
+
+  calcTotalTrips(trips){
+    return trips.length;
+      }
+  updateProfile = async(input) => {
+    try {
+await instance.put(`/updateProfile/${this.user._id}`,input );
+runInAction(() => {
+  this.users.find((userr)=>userr._id==this.user._id).profile=input.profile;
+})
+// this.users.find((userr)=>userr._id==this.user._id).profile=input.profile;
+    } catch (error) {
+      console.error(error);
+    }
+  };
 }
 
 const userStore = new UserStore();
 userStore.checkForToken();
+userStore.fetchUsers();
 export default userStore;

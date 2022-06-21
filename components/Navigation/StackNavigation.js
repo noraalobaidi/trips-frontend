@@ -5,23 +5,23 @@ import { createStackNavigator } from "@react-navigation/stack";
 import MainProfile from "../profile/MainProfile";
 import UpdateProfile from "../profile/UpdateProfile";
 import UpdateProfileButton from "../profile/UpdateProfileButton";
-// import { SignUp } from "../authentication/SignUp";
+import SignInOrUp from "../authentication/SignInOrUp";
 import SignIn from "../authentication/SignIn";
 import SignUp from "../authentication/SignUp";
-import MainAccountPage from "../authentication/MainAccountPage";
+import SignOut from "../authentication/SignOut"; //where to put this
 
 const { Navigator, Screen } = createStackNavigator();
 
 export default function StackNavigator() {
   return (
-    <Navigator initialRouteName="MainAccountPage">
+    <Navigator initialRouteName="SignInOrUp">
       <Screen
         name="Profile"
         component={MainProfile}
         options={{
           headerStyle: { backgroundColor: "#547AA5" },
           headerTintColor: "white",
-          headerRight: () => <UpdateProfileButton />,
+          headerRight: () => <SignOut />,
         }}
       />
       <Screen
@@ -52,8 +52,8 @@ export default function StackNavigator() {
         }}
       />
       <Screen
-        name="MainAccountPage"
-        component={MainAccountPage}
+        name="SignInOrUp"
+        component={SignInOrUp}
         options={{
           headerStyle: { backgroundColor: "#547AA5" },
           headerTintColor: "white",
