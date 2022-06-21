@@ -1,4 +1,4 @@
-import { makeAutoObservable } from "mobx";
+import { makeAutoObservable ,runInAction} from "mobx";
 import instance from "../instance/instance";
 import jwt_decode from "jwt-decode";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -9,6 +9,7 @@ class UserStore {
   }
   users=[];
   user = null;
+  profile=null;
 
 
   fetchUsers = async () => {
@@ -22,15 +23,7 @@ class UserStore {
       console.log("UserStore -> fetchUsers -> error", error);
     }
   };
-getUserProfile = ()=>{
 
-    const founduser= this.users.filter((userr) => this.user._id == userr._id);
-console.log("getting user from users "+founduser);
-const profile=founduser.profile;
-return profile;
-  
-
-};
   signup = async (userData) => {
     try {
       const response = await instance.post("/signup", userData);
@@ -85,6 +78,17 @@ return profile;
   calcTotalTrips(trips){
     return trips.length;
       }
+  updateProfile = async(input) => {
+    try {
+await instance.put(`/updateProfile/${this.user._id}`,input );
+runInAction(() => {
+  this.users.find((userr)=>userr._id==this.user._id).profile=input.profile;
+})
+// this.users.find((userr)=>userr._id==this.user._id).profile=input.profile;
+    } catch (error) {
+      console.error(error);
+    }
+  };
 }
 
 const userStore = new UserStore();

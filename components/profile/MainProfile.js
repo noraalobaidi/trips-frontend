@@ -1,20 +1,17 @@
 import { View, Text,StyleSheet } from 'react-native';
 import {Image} from "native-base";
 import React from 'react';
-import profile from "../../mainProfileData";
 import UserStore from "../../stores/UsersStore"
+import { observer } from 'mobx-react';
 
-export default function MainProfile() {
+function MainProfile() {
 
 const founduser= UserStore.users.filter((userr) => UserStore.user._id == userr._id);
 const userprofile=founduser[0].profile;
 const user=founduser[0];
 console.log("profileeee"+Object.entries(userprofile));
+UserStore.profile=userprofile;
 
-// if(UserStore.user){
-//   userProfile=UserStore.getUserProfile;
-//   console.log("profileeee "+userProfile);
-// }
   return (
     <View style={styles.container}>
         <View style={styles.header}>
@@ -31,6 +28,7 @@ console.log("profileeee"+Object.entries(userprofile));
     </View>
   )
 }
+export default observer (MainProfile);
 
 
 
