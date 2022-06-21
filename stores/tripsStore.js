@@ -26,6 +26,10 @@ class TripsStore {
       console.error("can't add trip", error);
     }
   };
+
+  getTripById(id) {
+    return this.trips.find((trip) => trip._id === id);
+  }
 }
 
 const tripsStore = new TripsStore();

@@ -7,9 +7,16 @@ import {
 } from "react-native";
 import React from "react";
 
-export default function TripItem({ trip, onPress }) {
+export default function TripItem({ navigation, trip }) {
   return (
-    <TouchableOpacity style={styles.card} onPress={onPress}>
+    <TouchableOpacity
+      style={styles.card}
+      onPress={() => {
+        navigation.navigate("Detail", {
+          itemId: trip._id,
+        });
+      }}
+    >
       <ImageBackground
         // resizeMode="cover"
         // opacity={0.6}

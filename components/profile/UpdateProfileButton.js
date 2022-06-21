@@ -10,14 +10,14 @@ export default function UpdateProfileButton() {
   return (
     <View>
         <TouchableOpacity onPress={() => navigation.navigate("UpdateProfile")}>
-            <Button colorScheme={"white"}>Update profile</Button>
+            <Button variant="outline" colorScheme="black"style={styles.button} >Edit profile</Button>
             </TouchableOpacity>
       
     </View>
   )
 }
 const styles = StyleSheet.create({
-    // button:{fontSize:22,fontWeight:"bold",},
+    button:{width:150,marginTop:10},
 
 
     // totalTrips:{}

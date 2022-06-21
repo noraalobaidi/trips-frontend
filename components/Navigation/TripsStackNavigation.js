@@ -9,10 +9,8 @@ export default function TripsStackNavigator() {
     <Navigator
       initialRouteName="Trips"
       screenOptions={{
-        headerTintColor: "black",
-        headerStyle: {
-          backgroundColor: "#FFFFFF",
-        },
+        headerStyle: { backgroundColor: "#547AA5" },
+        headerTintColor: "white",
         headerTitleStyle: {
           fontWeight: "bold",
         },
