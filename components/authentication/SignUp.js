@@ -47,6 +47,7 @@ export default function SignUp({ navigation }) {
             username: "",
             password: "",
           });
+          navigation.navigate("Profile");
         }}
       >
         <Text style={styles.submitButtonText}> Sign up </Text>
@@ -74,7 +75,7 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.29,
     shadowRadius: 4.65,
-
+    minWidth: 387,
     elevation: 7,
   },
   submitButton: {
@@ -94,23 +95,6 @@ const styles = StyleSheet.create({
     elevation: 7,
   },
 
-  signInButton: {
-    backgroundColor: "#547AA5",
-    padding: 10,
-    margin: 15,
-    height: 40,
-    maxWidth: 100,
-    borderRadius: 12,
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 3,
-    },
-    shadowOpacity: 0.29,
-    shadowRadius: 4.65,
-
-    elevation: 7,
-  },
   submitButtonText: {
     color: "white",
     textAlign: "center",

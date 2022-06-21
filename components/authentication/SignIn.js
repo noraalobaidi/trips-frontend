@@ -65,7 +65,8 @@ const styles = StyleSheet.create({
     margin: 15,
     padding: 7,
     height: 40,
-    borderColor: "#7a42f4",
+    borderColor: "#D1D1D1",
+    borderWidth: 1,
     borderRadius: 12,
     shadowColor: "#000",
     shadowOffset: {
@@ -74,7 +75,7 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.29,
     shadowRadius: 4.65,
-
+    minWidth: 387,
     elevation: 7,
   },
   submitButton: {
