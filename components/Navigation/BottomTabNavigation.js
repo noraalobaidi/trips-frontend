@@ -29,8 +29,8 @@ export default function BottomTabNavigator() {
         }}
       />
       <Tab.Screen
-        name="Notifications"
-        component={TripList}
+        name="Trips"
+        component={TripsStackNavigator}
         options={{
           tabBarLabel: "MyTrips",
           tabBarIcon: () => (

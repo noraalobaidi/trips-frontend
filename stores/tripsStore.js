@@ -19,6 +19,10 @@ class TripsStore {
   getTrips = async () => {
     return this.trips;
   };
+
+  getTripById(id) {
+    return this.trips.find((trip) => trip._id === id);
+  }
 }
 
 const tripsStore = new TripsStore();
