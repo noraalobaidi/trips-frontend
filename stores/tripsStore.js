@@ -1,4 +1,5 @@
 import { makeAutoObservable } from "mobx";
+import userStore from "./UsersStore";
 import instance from "../instance/instance";
 
 class TripsStore {
@@ -16,8 +17,14 @@ class TripsStore {
     }
   };
 
-  getTrips = async () => {
-    return this.trips;
+  addTrip = async (newTrip) => {
+    try {
+      newTrip.user = userStore.user._id;
+      const response = await instance.post("/trips", newTrip);
+      this.trips.push(response.data);
+    } catch (error) {
+      console.error("can't add trip", error);
+    }
   };
 }
 
