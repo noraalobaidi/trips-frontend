@@ -20,7 +20,7 @@ export default function BottomTabNavigator() {
     >
       <Tab.Screen
         name="Explore"
-        component={TripList}
+        component={TripsStackNavigator}
         options={{
           tabBarLabel: "Explore",
           tabBarIcon: () => (
