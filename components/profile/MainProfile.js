@@ -6,22 +6,21 @@ import { observer } from 'mobx-react';
 
 function MainProfile() {
 
-const founduser= UserStore.users.filter((userr) => UserStore.user._id == userr._id);
-const userprofile=founduser[0].profile;
-const user=founduser[0];
-console.log("profileeee"+Object.entries(userprofile));
+const founduser= UserStore.users.find((userr) => UserStore.user._id == userr._id);
+const userprofile=founduser.profile;
+// console.log("profileeee"+Object.entries(userprofile));
 UserStore.profile=userprofile;
 
   return (
     <View style={styles.container}>
         <View style={styles.header}>
         <Image style={styles.image}borderRadius={100}source={{ uri:userprofile.profileImage }} alt="Alternate Text" size="xl" />
-        <Text style={styles.username}>{user.username}</Text>
+        <Text style={styles.username}>{founduser.username}</Text>
       <Text style={styles.bio}>{userprofile.bio}</Text>
       {/* <Text>{UserStore.calcTotalTrips(profile[0].trips)}</Text> */}
       <View style={styles.box}>
         <Text style={styles.trips}>Trips</Text>
-        <Text style={{fontSize:16,color:"black"}}>{UserStore.calcTotalTrips((user.trips))}</Text>
+        <Text style={{fontSize:16,color:"black"}}>{UserStore.calcTotalTrips((founduser.trips))}</Text>
       </View>
         </View>
       
