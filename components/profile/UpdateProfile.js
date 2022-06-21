@@ -3,16 +3,27 @@ import { View, Text,StyleSheet ,SafeAreaView,TextInput,TouchableOpacity} from 'r
 import {Image} from "native-base";
 import React from 'react';
 import profile from "../../mainProfileData";
-import UserStore from "../../UserStore"
+import userStore from '../../stores/UsersStore';
 import { useState } from "react";
+import { observer } from 'mobx-react';
 
-export default function UpdateProfile() {
-    const [input, setInput] = useState(profile[0]
-      );
+function UpdateProfile() {
+    const [input, setInput] = useState(userStore.profile);
+    // const [updatedProfile,setUpdatedProfile]=useState(
+    //   {
+    //     profile:input
+    //   }
+    // );
+
 
       const handleSubmit = () => {
         // event.preventDefault();
-        console.log(input);
+   const updatedProfile={
+    profile:input
+  };
+   console.log(updatedProfile);
+        userStore.updateProfile(updatedProfile);
+
         alert("Profile updated successfully");
       };
     
@@ -26,16 +37,16 @@ export default function UpdateProfile() {
     <TextInput
           style={styles.input}
           underlineColorAndroid="transparent"
-          placeholder={input.image}
+          placeholder={input.profileImage}
           label="Image"
           autoCapitalize="none"
-          onChangeText={(img) => setInput({...input, image: img})}
+          onChangeText={(img) => setInput({...input, profileImage: img})}
         />
         <Text>Username</Text>
          <TextInput
           style={styles.input}
           underlineColorAndroid="transparent"
-          placeholder={input.username}
+          placeholder={userStore.user.username}
           label="username"
           autoCapitalize="none"
           editable={false}
@@ -52,8 +63,7 @@ export default function UpdateProfile() {
         />
          <TouchableOpacity
         style={styles.submitButton}
-        onPress={() =>{ console.log(input);
-            alert("Profile updated successfully");}}
+        onPress={() =>{handleSubmit()}}
       >
         <Text style={styles.submitButtonText}> Update </Text>
       </TouchableOpacity>
@@ -62,80 +72,56 @@ export default function UpdateProfile() {
   )
 }
 
+export default observer (UpdateProfile);
 
 
 
 const styles = StyleSheet.create({
-    container: {
-        
-      flex: 1,
-      backgroundColor: '#fff',
-      alignItems: 'center',
-      // justifyContent: 'center',
+  container: {
+    paddingTop: 23,
+    width: 300,
+  },
+  input: {
+    margin: 15,
+    padding: 7,
+    height: 40,
+    borderColor: "#7a42f4",
+    borderRadius: 12,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 3,
     },
-    header:{
-        backgroundColor:"#547AA5",
-        alignItems: 'center',
-        width:450,
-        // height:200,
-        height:150
+    shadowOpacity: 0.29,
+    shadowRadius: 4.65,
 
-    }
-    ,image:{borderColor: "#ffffff",borderWidth: 5,marginTop:50,width:180,height:180},
-    username:{fontSize:22,fontWeight:"bold"},
-    box:{marginTop:20,backgroundColor:"#f7f7f7",width:100,height:60, borderRadius:10,
-    alignItems:"center",justifyContent:"center"},
-    trips:{fontSize:18,color:"#547AA5",fontWeight:"500"},
-    input: {
-        margin: 15,
-        padding: 7,
-        height: 40,
-        borderColor: "#7a42f4",
-        borderRadius: 12,
-        shadowColor: "#000",
-        shadowOffset: {
-          width: 0,
-          height: 3,
-        },
-        shadowOpacity: 0.29,
-        shadowRadius: 4.65,
-    
-        elevation: 7,
-      }, bio: {
-        margin: 15,
-        padding: 7,
-        height: 100,
-        width:300,
-        borderColor: "#7a42f4",
-        borderRadius: 12,
-        shadowColor: "#000",
-        shadowOffset: {
-          width: 0,
-          height: 3,
-        },
-        shadowOpacity: 0.29,
-        shadowRadius: 4.65,
-    
-        elevation: 7,
-      },
-      
-      submitButton: {
-        backgroundColor: "#547AA5",
-        padding: 10,
-        margin: 15,
-        height: 40,
-        borderRadius: 12,
-        shadowColor: "#000",
-        shadowOffset: {
-          width: 0,
-          height: 3,
-        },
-        shadowOpacity: 0.29,
-        shadowRadius: 4.65,
-    
-        elevation: 7,
-      },
+    elevation: 7,
+  },
+  submitButton: {
+    backgroundColor: "#547AA5",
+    padding: 10,
+    margin: 15,
+    height: 40,
+    borderRadius: 12,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 3,
+    },
+    shadowOpacity: 0.29,
+    shadowRadius: 4.65,
 
-    // totalTrips:{}
-  });
-
+    elevation: 7,
+  },
+  submitButtonText: {
+    color: "white",
+    textAlign: "center",
+    fontWeight: "bold",
+  },
+  welcome: {
+    textAlign: "center",
+    fontWeight: "bold",
+    marginBottom: 69,
+    fontSize: 30,
+  },
+});
