@@ -8,16 +8,7 @@ function TripList({ navigation }) {
   const tripsList = tripsStore.trips;
   console.log(tripsList);
   function renderTrip({ item: trip }) {
-    return (
-      <TripItem
-        trip={trip}
-        onPress={() => {
-          navigation.navigate("Detail", {
-            itemId: trip._id,
-          });
-        }}
-      />
-    );
+    return <TripItem navigation={navigation} trip={trip} />;
   }
 
   return (
