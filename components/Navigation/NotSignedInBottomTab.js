@@ -31,23 +31,6 @@ function BottomTabNavigator() {
           ),
         }}
       />
-
-      <Tab.Screen
-        name="Notifications"
-        component={UserTripsStackNavigator}
-        options={{
-          tabBarLabel: "MyTrips",
-          tabBarIcon: () => (
-            <MaterialCommunityIcons
-              name="book-account-outline"
-              size={24}
-              color="#D1D1D1"
-            />
-          ),
-          //tabBarBadge: 3,
-        }}
-      />
-
       <Tab.Screen
         name="MainProfile"
         component={StackNavigator}

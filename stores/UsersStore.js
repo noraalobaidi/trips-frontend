@@ -1,4 +1,4 @@
-import { makeAutoObservable ,runInAction} from "mobx";
+import { makeAutoObservable, runInAction } from "mobx";
 import instance from "../instance/instance";
 import jwt_decode from "jwt-decode";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -7,20 +7,18 @@ class UserStore {
   constructor() {
     makeAutoObservable(this);
   }
-  users=[];
+  users = [];
   user = null;
-  profile=null;
-
+  profile = null;
 
   fetchUsers = async () => {
     try {
-
       const response = await instance.get("/user");
       this.users = response.data;
 
       console.log(response.data);
     } catch (error) {
-      console.log("UserStore -> fetchUsers -> error", error);
+      console.log("userStore -> fetchUsers -> error", error);
     }
   };
 
@@ -63,7 +61,7 @@ class UserStore {
     await AsyncStorage.setItem("token", userToken);
     instance.defaults.headers.common.Authorization = `Bearer ${userToken}`;
     this.user = jwt_decode(userToken);
-    console.log("userrrr "+Object.entries(this.user))
+    console.log("userrrr " + Object.entries(this.user));
   };
 
   checkForToken = async () => {
@@ -75,16 +73,17 @@ class UserStore {
     }
   };
 
-  calcTotalTrips(trips){
+  calcTotalTrips(trips) {
     return trips.length;
-      }
-  updateProfile = async(input) => {
+  }
+  updateProfile = async (input) => {
     try {
-await instance.put(`/updateProfile/${this.user._id}`,input );
-runInAction(() => {
-  this.users.find((userr)=>userr._id==this.user._id).profile=input.profile;
-})
-// this.users.find((userr)=>userr._id==this.user._id).profile=input.profile;
+      await instance.put(`/updateProfile/${this.user._id}`, input);
+      runInAction(() => {
+        this.users.find((userr) => userr._id == this.user._id).profile =
+          input.profile;
+      });
+      // this.users.find((userr)=>userr._id==this.user._id).profile=input.profile;
     } catch (error) {
       console.error(error);
     }

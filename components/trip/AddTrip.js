@@ -7,12 +7,13 @@ import {
   TextInput,
 } from "react-native";
 import { useState } from "react";
-import usersStore from "../../stores/UsersStore";
+import tripsStore from "../../stores/tripsStore";
 
-export default function SignIn({ navigation }) {
-  const [user, setUser] = useState({
-    username: "",
-    password: "",
+export default function AddTrip({ navigation }) {
+  const [trip, setTrip] = useState({
+    title: "",
+    description: "",
+    image: "",
   });
 
   return (
@@ -21,37 +22,46 @@ export default function SignIn({ navigation }) {
         <TextInput
           style={styles.input}
           underlineColorAndroid="transparent"
-          placeholder="Enter username"
-          label="username"
-          value={user.username}
-          autoCapitalize="none"
-          onChangeText={(username) => setUser({ ...user, username })}
+          placeholder="Enter trip title"
+          label="title"
+          value={trip.title}
+          autoCapitalize="words"
+          onChangeText={(title) => setTrip({ ...trip, title })}
         />
 
         <TextInput
           style={styles.input}
           underlineColorAndroid="transparent"
-          placeholder="Enter password"
-          label="password"
-          secureTextEntry={true}
-          value={user.password}
+          placeholder="Enter trip description"
+          label="description"
+          value={trip.description}
           autoCapitalize="none"
-          onChangeText={(password) => setUser({ ...user, password })}
+          onChangeText={(description) => setTrip({ ...trip, description })}
+        />
+
+        <TextInput
+          style={styles.input}
+          underlineColorAndroid="transparent"
+          placeholder="Enter trip image"
+          label="image"
+          value={trip.image}
+          autoCapitalize="none"
+          onChangeText={(image) => setTrip({ ...trip, image })}
         />
       </View>
       <TouchableOpacity
         style={styles.submitButton}
         onPress={async () => {
-          await usersStore.signin(user);
-          setUser({
-            username: "",
-            password: "",
+          await tripsStore.addTrip(trip);
+          setTrip({
+            title: "",
+            description: "",
+            image: "",
           });
-          navigation.navigate("Profile");
-          navigation.initialRouteName = "Profile";
+          navigation.navigate("Trips");
         }}
       >
-        <Text style={styles.submitButtonText}> Sign in </Text>
+        <Text style={styles.submitButtonText}> Add trip </Text>
       </TouchableOpacity>
     </SafeAreaView>
   );

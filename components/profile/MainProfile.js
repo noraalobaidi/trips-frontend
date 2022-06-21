@@ -26,16 +26,47 @@ UserStore.profile=userprofile;
         <Text style={{fontSize:16,color:"black",marginBottom:10}}>Trips</Text>
       </View>
         </View>
-      
+      </View>
     </View>
-  )
+  );
 }
-export default observer (MainProfile);
-
-
-
+export default observer(MainProfile);
 
 const styles = StyleSheet.create({
+<<<<<<< HEAD
+  container: {
+    flex: 1,
+    backgroundColor: "#fff",
+    alignItems: "center",
+    // justifyContent: 'center',
+  },
+  header: {
+    backgroundColor: "#547AA5",
+    alignItems: "center",
+    width: 450,
+    // height:200,
+    height: 150,
+  },
+  image: {
+    borderColor: "#ffffff",
+    borderWidth: 5,
+    marginTop: 50,
+    width: 180,
+    height: 180,
+  },
+  username: { fontSize: 22, fontWeight: "bold" },
+  bio: { fontSize: 16, marginTop: 10, color: "#606060" },
+  box: {
+    marginTop: 20,
+    backgroundColor: "#f7f7f7",
+    width: 100,
+    height: 60,
+    borderRadius: 10,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  trips: { fontSize: 18, color: "#547AA5", fontWeight: "500" },
+=======
     container: {
         
       flex: 1,
@@ -60,4 +91,7 @@ const styles = StyleSheet.create({
 
     // totalTrips:{}
   });
+>>>>>>> origin/main
 
+  // totalTrips:{}
+});
