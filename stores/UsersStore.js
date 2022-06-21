@@ -22,6 +22,10 @@ class UserStore {
     }
   };
 
+  getUserById(id) {
+    return this.users.find((user) => user._id === id);
+  }
+
   signup = async (userData) => {
     try {
       const response = await instance.post("/signup", userData);
