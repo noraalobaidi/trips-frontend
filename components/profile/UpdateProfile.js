@@ -6,16 +6,32 @@ import profile from "../../mainProfileData";
 import userStore from '../../stores/UsersStore';
 import { useState } from "react";
 import { observer } from 'mobx-react';
+// import * as ImagePicker from 'expo-image-picker';
+
 
 function UpdateProfile() {
     const [input, setInput] = useState(userStore.profile);
-    // const [updatedProfile,setUpdatedProfile]=useState(
-    //   {
-    //     profile:input
-    //   }
-    // );
 
+    // const [img, SetImg] = useState(input.profileImage);
 
+    // console.log(Object.entries(input)+"   inputt ")
+    // console.log(input.profileImage+"   inputt image")
+
+    // const [txt, setTxt] = useState(" Pick an image");
+    // const handleOcr = async () => {
+      // const result = await ImagePicker.launchImageLibraryAsync();
+      // console.log("handleOcr" + handleOcr);
+      // console.log("resulted image "+Object.values(result));
+  
+      // if (!result.cancelled) {
+        // console.log("setteing the image")
+        // const newimg=result.uri;
+        // console.log("new image    "+ typeof newimg);
+        // SetImg(newimg);
+        // console.log("image after   "+ typeof img);
+      // }
+      // console.log("image after   "+img);
+    // };
       const handleSubmit = () => {
         // event.preventDefault();
    const updatedProfile={
@@ -34,6 +50,7 @@ function UpdateProfile() {
       </View>
     
     <Text>Image</Text>
+
     <TextInput
           style={styles.input}
           underlineColorAndroid="transparent"
@@ -42,6 +59,21 @@ function UpdateProfile() {
           autoCapitalize="none"
           onChangeText={(img) => setInput({...input, profileImage: img})}
         />
+         
+      {/* <View style={styles.card_template}>
+        <Image
+          style={styles.card_image}
+          source={{
+            uri: img,
+          }}
+        />
+        <View style={styles.text_container}>
+          <TouchableOpacity onPress={handleOcr}>
+            <Text style={styles.card_title}>{txt}</Text>
+          </TouchableOpacity>
+        </View>
+      </View> */}
+    
         <Text>Username</Text>
          <TextInput
           style={styles.input}
@@ -126,4 +158,29 @@ const styles = StyleSheet.create({
     marginBottom: 69,
     fontSize: 30,
   },
+  card_template: {
+    width: 250,
+    height: 250,
+    boxShadow: "10px 10px 17px -12px rgba(0,0,0,0.75)",
+  },
+  card_image: {
+    width: 250,
+    height: 250,
+    borderRadius: 10,
+  },
+  text_container: {
+    position: "absolute",
+    width: 250,
+    height: 30,
+    bottom: 0,
+    padding: 5,
+    backgroundColor: "rgba(0,0,0, 0.3)",
+    borderBottomLeftRadius: 10,
+    borderBottomRightRadius: 10,
+  },
+  card_title: {
+    color: "white",
+    textAlign: "center",
+  },
+
 });

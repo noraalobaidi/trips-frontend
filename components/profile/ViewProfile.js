@@ -5,22 +5,24 @@ import UserStore from "../../stores/UsersStore"
 import { observer } from 'mobx-react';
 
 
-function ViewProfile() {
+function ViewProfile({route}) {
+  const { user, id } = route.params;
+  console.log("user"+user);
+  const founduser = UserStore.users.find((user)=>user._id==id);
 
-const founduser= UserStore.users.find((userr) => UserStore.user._id == userr._id);
 const userprofile=founduser.profile;
 // console.log("profileeee"+Object.entries(userprofile));
-UserStore.profile=userprofile;
+
 
   return (
     <View style={styles.container}>
         <View style={styles.header}>
         <Image style={styles.image}borderRadius={100}source={{ uri:userprofile.profileImage }} alt="Alternate Text" size="xl" />
-        <Text style={styles.username}>{founduser.username}</Text>
+        <Text style={styles.username}>{user.username}</Text>
       {/* <Text>{UserStore.calcTotalTrips(profile[0].trips)}</Text> */}
       {/* <View style={styles.box}> */}
         
-        <Text style={styles.trips}>{UserStore.calcTotalTrips((founduser.trips))}</Text>
+        <Text style={styles.trips}>{UserStore.calcTotalTrips((user.trips))}</Text>
         <Text style={{fontSize:16,color:"black",marginBottom:10}}>Trips</Text>
       {/* </View> */}
       <Text style={styles.bio}>{userprofile.bio}</Text>
