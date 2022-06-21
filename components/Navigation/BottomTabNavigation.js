@@ -5,7 +5,6 @@ import TripList from "../trip/TripList";
 import MainProfile from "../profile/MainProfile";
 import StackNavigator from "./StackNavigation";
 import TripsStackNavigator from "./TripsStackNavigation";
-import SignUp from "../authentication/SignUp";
 
 const Tab = createBottomTabNavigator();
 
@@ -21,7 +20,7 @@ export default function BottomTabNavigator() {
     >
       <Tab.Screen
         name="Explore"
-        component={StackNavigator}
+        component={TripList}
         options={{
           tabBarLabel: "Explore",
           tabBarIcon: () => (
