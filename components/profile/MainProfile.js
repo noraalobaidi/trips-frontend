@@ -4,14 +4,18 @@ import React from "react";
 import UserStore from "../../stores/UsersStore";
 import { observer } from "mobx-react";
 import UpdateProfileButton from "../profile/UpdateProfileButton";
+import userStore from "../../stores/UsersStore";
 
 function MainProfile() {
-  const founduser = UserStore.users.find(
-    (userr) => UserStore.user._id == userr._id
-  );
-  const userprofile = founduser.profile;
-  // console.log("profileeee"+Object.entries(userprofile));
-  UserStore.profile = userprofile;
+  let founduser;
+  let userprofile;
+  if (userStore.user) {
+    founduser = UserStore.users.find(
+      (userr) => UserStore.user._id == userr._id
+    );
+    userprofile = founduser.profile;
+    UserStore.profile = userprofile;
+  }
 
   return (
     <View style={styles.container}>
@@ -19,17 +23,16 @@ function MainProfile() {
         <Image
           style={styles.image}
           borderRadius={100}
-          source={{ uri: userprofile.profileImage }}
+          source={{ uri: userprofile?.profileImage }}
           alt="Alternate Text"
           size="xl"
         />
-        <Text style={styles.username}>{founduser.username}</Text>
-        <Text style={styles.bio}>{userprofile.bio}</Text>
-        {/* <Text>{UserStore.calcTotalTrips(profile[0].trips)}</Text> */}
+        <Text style={styles.username}>{founduser?.username}</Text>
+        <Text style={styles.bio}>{userprofile?.bio}</Text>
         <UpdateProfileButton />
         <View style={styles.box}>
           <Text style={styles.trips}>
-            {UserStore.calcTotalTrips(founduser.trips)}
+            {UserStore.calcTotalTrips(founduser?.trips)}
           </Text>
           <Text style={{ fontSize: 16, color: "black", marginBottom: 10 }}>
             Trips

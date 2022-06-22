@@ -47,8 +47,6 @@ export default function SignIn({ navigation }) {
             username: "",
             password: "",
           });
-          navigation.navigate("Profile");
-          navigation.initialRouteName = "Profile";
         }}
       >
         <Text style={styles.submitButtonText}> Sign in </Text>
