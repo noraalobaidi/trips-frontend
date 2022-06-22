@@ -1,4 +1,4 @@
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, Text } from "react-native";
 import React from "react";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { Button } from "native-base";
@@ -13,9 +13,15 @@ export default function AddTripButton() {
           navigation.navigate("AddTrip");
         }}
       >
-        <Button>Add trip</Button>
+        <Button colorScheme={"white"}>Add trip</Button>
+        {/* <Text style={styles.button}>Add trip</Text> */}
       </TouchableOpacity>
     </View>
   );
 }
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  button: {
+    color: "white",
+    marginLeft: 8,
+  },
+});
