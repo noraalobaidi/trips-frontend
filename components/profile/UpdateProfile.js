@@ -62,7 +62,10 @@ function UpdateProfile() {
         label="Image"
         autoCapitalize="none"
         onChangeText={(img) => setInput({ ...input, profileImage: img })}
+<<<<<<< HEAD
         defaultValue={input.profileImage}
+=======
+>>>>>>> origin/main
       />
 
       {/* <View style={styles.card_template}>
@@ -71,6 +74,7 @@ function UpdateProfile() {
           source={{
             uri: img,
           }}
+          
         />
         <View style={styles.text_container}>
           <TouchableOpacity onPress={handleOcr}>
@@ -118,7 +122,12 @@ export default observer(UpdateProfile);
 const styles = StyleSheet.create({
   container: {
     padding: 30,
+<<<<<<< HEAD
     width: "100%",
+=======
+    width: 300,
+    textAlign: "center",
+>>>>>>> origin/main
   },
   input: {
     margin: 15,

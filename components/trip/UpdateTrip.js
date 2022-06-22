@@ -6,16 +6,19 @@ import {
   TouchableOpacity,
   TextInput,
 } from "react-native";
-import { useToast } from "native-base";
 import { useState } from "react";
 import tripsStore from "../../stores/tripsStore";
+import { useNavigation } from "@react-navigation/native";
 
-export default function AddTrip({ navigation }) {
-  const toast = useToast();
-  const [trip, setTrip] = useState({
-    title: "",
-    description: "",
-    image: "",
+export default function UpdateTrip({ route, navigation }) {
+  const { itemId } = route.params;
+  const trip = tripsStore.getTripById(itemId);
+  const [updatedTrip, setUpdatedTrip] = useState({
+    _id: trip._id,
+    user: trip.user,
+    title: trip.title,
+    description: trip.description,
+    image: trip.image,
   });
 
   return (
@@ -24,21 +27,21 @@ export default function AddTrip({ navigation }) {
         <TextInput
           style={styles.input}
           underlineColorAndroid="transparent"
-          placeholder="Enter trip title"
           label="title"
-          value={trip.title}
+          value={updatedTrip.title}
           autoCapitalize="words"
-          onChangeText={(title) => setTrip({ ...trip, title })}
+          onChangeText={(title) => setUpdatedTrip({ ...updatedTrip, title })}
         />
 
         <TextInput
           style={styles.input}
           underlineColorAndroid="transparent"
-          placeholder="Enter trip description"
           label="description"
-          value={trip.description}
+          value={updatedTrip.description}
           autoCapitalize="none"
-          onChangeText={(description) => setTrip({ ...trip, description })}
+          onChangeText={(description) =>
+            setUpdatedTrip({ ...updatedTrip, description })
+          }
         />
 
         <TextInput
@@ -46,28 +49,25 @@ export default function AddTrip({ navigation }) {
           underlineColorAndroid="transparent"
           placeholder="Enter trip image"
           label="image"
-          value={trip.image}
+          value={updatedTrip.image}
           autoCapitalize="none"
-          onChangeText={(image) => setTrip({ ...trip, image })}
+          onChangeText={(image) => setUpdatedTrip({ ...updatedTrip, image })}
         />
       </View>
       <TouchableOpacity
         style={styles.submitButton}
         onPress={async () => {
-          await tripsStore.addTrip(trip);
-          setTrip({
+          await tripsStore.updateTrip(updatedTrip);
+          console.log(`/trips/${trip._id}`);
+          setUpdatedTrip({
             title: "",
             description: "",
             image: "",
           });
-          toast.show({
-            title: "Trip added! Enjoy!",
-            placement: "top",
-          });
           navigation.navigate("My Trips");
         }}
       >
-        <Text style={styles.submitButtonText}> Add trip </Text>
+        <Text style={styles.submitButtonText}> update trip </Text>
       </TouchableOpacity>
     </SafeAreaView>
   );
@@ -76,10 +76,7 @@ export default function AddTrip({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     paddingTop: 23,
-<<<<<<< HEAD
-=======
     width: "100%",
->>>>>>> origin/main
   },
   input: {
     margin: 15,
@@ -95,7 +92,6 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.29,
     shadowRadius: 4.65,
-
     elevation: 7,
   },
   submitButton: {
@@ -111,7 +107,6 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.29,
     shadowRadius: 4.65,
-
     elevation: 7,
   },
   submitButtonText: {
