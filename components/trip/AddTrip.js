@@ -76,10 +76,7 @@ export default function AddTrip({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     paddingTop: 23,
-<<<<<<< HEAD
-=======
     width: "100%",
->>>>>>> origin/main
   },
   input: {
     margin: 15,
