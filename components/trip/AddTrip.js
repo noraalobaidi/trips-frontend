@@ -6,10 +6,12 @@ import {
   TouchableOpacity,
   TextInput,
 } from "react-native";
+import { useToast } from "native-base";
 import { useState } from "react";
 import tripsStore from "../../stores/tripsStore";
 
 export default function AddTrip({ navigation }) {
+  const toast = useToast();
   const [trip, setTrip] = useState({
     title: "",
     description: "",
@@ -57,6 +59,10 @@ export default function AddTrip({ navigation }) {
             title: "",
             description: "",
             image: "",
+          });
+          toast.show({
+            title: "Trip added! Enjoy!",
+            placement: "top",
           });
           navigation.navigate("My Trips");
         }}

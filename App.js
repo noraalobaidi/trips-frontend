@@ -3,16 +3,17 @@ import { NativeBaseProvider } from "native-base";
 
 //navigation
 import { NavigationContainer } from "@react-navigation/native";
-import BottomTabNavigator from "./components/Navigation/BottomTabNav/SignedInBottomTab";
+import SignedInBottomTab from "./components/Navigation/BottomTabNav/SignedInBottomTab";
 import NotSignedInBottomTab from "./components/Navigation/BottomTabNav/NotSignedInBottomTab";
 import userStore from "./stores/UsersStore";
 import { observer } from "mobx-react-lite";
 
 function App() {
+  //userStore.user = null;
   return (
     <NativeBaseProvider>
       <NavigationContainer>
-        {userStore.user ? <BottomTabNavigator /> : <NotSignedInBottomTab />}
+        {userStore.user ? <SignedInBottomTab /> : <NotSignedInBottomTab />}
       </NavigationContainer>
     </NativeBaseProvider>
   );
