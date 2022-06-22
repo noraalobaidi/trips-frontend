@@ -14,9 +14,11 @@ import userStore from "../../stores/UsersStore";
 import { useState } from "react";
 import { observer } from "mobx-react";
 // import * as ImagePicker from 'expo-image-picker';
+import { useNavigation } from "@react-navigation/native";
 
 function UpdateProfile() {
   const [input, setInput] = useState(userStore.profile);
+  const navigation = useNavigation();
 
   // const [img, SetImg] = useState(input.profileImage);
 
@@ -45,15 +47,37 @@ function UpdateProfile() {
     };
     console.log(updatedProfile);
     userStore.updateProfile(updatedProfile);
-
     alert("Profile updated successfully");
+    navigation.navigate("Profile");
   };
 
   return (
     <View style={styles.container}>
       <View style={styles.header}></View>
+      <Text style={styles.text}>Username</Text>
+      <TextInput
+        style={styles.input}
+        underlineColorAndroid="transparent"
+        placeholder={userStore.user.username}
+        label="username"
+        autoCapitalize="none"
+        editable={false}
+        onChangeText={(usernamee) =>
+          setInput({ ...input, username: usernamee })
+        }
+      />
+      <Text style={styles.text}>Bio</Text>
+      <TextInput
+        style={styles.input}
+        underlineColorAndroid="transparent"
+        placeholder={input.bio}
+        label="bio"
+        autoCapitalize="none"
+        onChangeText={(bioo) => setInput({ ...input, bio: bioo })}
+        defaultValue={input.bio}
+      />
 
-      <Text>Image</Text>
+      <Text style={styles.text}>Image</Text>
 
       <TextInput
         style={styles.input}
@@ -80,28 +104,6 @@ function UpdateProfile() {
         </View>
       </View> */}
 
-      <Text>Username</Text>
-      <TextInput
-        style={styles.input}
-        underlineColorAndroid="transparent"
-        placeholder={userStore.user.username}
-        label="username"
-        autoCapitalize="none"
-        editable={false}
-        onChangeText={(usernamee) =>
-          setInput({ ...input, username: usernamee })
-        }
-      />
-      <Text>Bio</Text>
-      <TextInput
-        style={styles.input}
-        underlineColorAndroid="transparent"
-        placeholder={input.bio}
-        label="bio"
-        autoCapitalize="none"
-        onChangeText={(bioo) => setInput({ ...input, bio: bioo })}
-        defaultValue={input.bio}
-      />
       <TouchableOpacity
         style={styles.submitButton}
         onPress={() => {
@@ -118,10 +120,26 @@ export default observer(UpdateProfile);
 
 const styles = StyleSheet.create({
   container: {
-    padding: 30,
+    paddingTop: 23,
     width: "100%",
     textAlign: "center",
   },
+  // input: {
+  //   margin: 15,
+  //   padding: 7,
+  //   height: 40,
+  //   borderColor: "#7a42f4",
+  //   borderRadius: 12,
+  //   shadowColor: "#000",
+  //   shadowOffset: {
+  //     width: 0,
+  //     height: 3,
+  //   },
+  //   shadowOpacity: 0.29,
+  //   shadowRadius: 4.65,
+
+  //   elevation: 7,
+  // },
   input: {
     margin: 15,
     padding: 7,
@@ -139,6 +157,7 @@ const styles = StyleSheet.create({
     minWidth: 387,
     elevation: 7,
   },
+  text: { margin: 5, paddingLeft: 5 },
   submitButton: {
     backgroundColor: "#547AA5",
     padding: 10,

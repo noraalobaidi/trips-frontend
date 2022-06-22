@@ -11,6 +11,7 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 import UpdateTripButton from "./UpdateTripButton";
 import tripsStore from "../../stores/tripsStore";
 import userStore from "../../stores/UsersStore";
+import DeleteTripButton from "./DeleteTripButton";
 
 export default function UserTripDetails({ route, navigation }) {
   const { itemId } = route.params;
@@ -35,6 +36,7 @@ export default function UserTripDetails({ route, navigation }) {
           </TouchableOpacity>
           <Text style={styles.description}>{trip.description}</Text>
           <UpdateTripButton itemId={itemId} />
+          <DeleteTripButton itemId={itemId} />
         </View>
       </ScrollView>
     </SafeAreaView>
