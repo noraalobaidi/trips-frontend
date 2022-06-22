@@ -16,7 +16,7 @@ class UserStore {
       const response = await instance.get("/user");
       this.users = response.data;
 
-      console.log(response.data);
+      //console.log(response.data);
     } catch (error) {
       console.log("userStore -> fetchUsers -> error", error);
     }
@@ -29,9 +29,7 @@ class UserStore {
   signup = async (userData) => {
     try {
       const response = await instance.post("/signup", userData);
-      this.user = jwt_decode(response.data.token);
-      instance.defaults.headers.common.Authorization = `Bearer ${response.data.token}`;
-      alert("Welcome!");
+      this.setUser(response.data.token);
       return true;
     } catch (error) {
       alert("This username is already taken. Please choose another name");
@@ -43,8 +41,6 @@ class UserStore {
   signin = async (userData) => {
     try {
       const res = await instance.post("/signin", userData);
-      // this.user = jwt_decode(res.data.token);
-      // instance.defaults.headers.common.Authorization = `Bearer ${res.data.token}`;
       this.setUser(res.data.token);
     } catch (error) {
       alert("Incorrect username or password");
@@ -55,7 +51,7 @@ class UserStore {
     try {
       delete instance.defaults.headers.common.Authorization;
       await AsyncStorage.removeItem("token");
-      // this.user = null;
+      this.user = null;
     } catch (error) {
       console.error(error);
     }
@@ -65,7 +61,7 @@ class UserStore {
     await AsyncStorage.setItem("token", userToken);
     instance.defaults.headers.common.Authorization = `Bearer ${userToken}`;
     this.user = jwt_decode(userToken);
-    console.log("userrrr " + Object.entries(this.user));
+    //console.log("userrrr " + Object.entries(this.user));
   };
 
   checkForToken = async () => {
