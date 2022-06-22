@@ -26,7 +26,7 @@ export default function UserTripsStackNavigator() {
         }}
       />
       <Screen name="Detail" component={TripDetails} />
-      <Screen name="AddTrip" component={AddTrip} />
+      <Screen name="Add Trip" component={AddTrip} />
     </Navigator>
   );
 }
