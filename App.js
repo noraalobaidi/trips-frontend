@@ -1,21 +1,24 @@
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet } from "react-native";
 import { NativeBaseProvider } from "native-base";
 
 //navigation
 import { NavigationContainer } from "@react-navigation/native";
-import StackNavigator from "./components/Navigation/StackNavigation";
-import BottomTabNavigator from "./components/Navigation/BottomTabNavigation";
+import BottomTabNavigator from "./components/Navigation/BottomTabNav/SignedInBottomTab";
+import NotSignedInBottomTab from "./components/Navigation/BottomTabNav/NotSignedInBottomTab";
+import userStore from "./stores/UsersStore";
+import { observer } from "mobx-react-lite";
 
-export default function App() {
+function App() {
   return (
     <NativeBaseProvider>
       <NavigationContainer>
-        <BottomTabNavigator />
+        {userStore.user ? <BottomTabNavigator /> : <NotSignedInBottomTab />}
       </NavigationContainer>
     </NativeBaseProvider>
   );
 }
+
+export default observer(App);
 
 const styles = StyleSheet.create({
   container: {

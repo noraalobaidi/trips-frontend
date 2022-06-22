@@ -12,7 +12,6 @@ export default function UserTripsStackNavigator() {
     <Navigator
       initialRouteName="My Trips"
       screenOptions={{
-        headerTintColor: "black",
         headerStyle: { backgroundColor: "#547AA5" },
         headerTintColor: "white",
         headerTitleStyle: {

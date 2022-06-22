@@ -4,14 +4,18 @@ import React from "react";
 import userStore from "../../stores/UsersStore";
 import { observer } from "mobx-react";
 import UpdateProfileButton from "../profile/UpdateProfileButton";
+import userStore from "../../stores/UsersStore";
 
 function MainProfile() {
-  const founduser = userStore.users.find(
-    (userr) => userStore.user._id == userr._id
-  );
-  const userprofile = founduser.profile;
-  // console.log("profileeee"+Object.entries(userprofile));
-  userStore.profile = userprofile;
+  let founduser;
+  let userprofile;
+  if (userStore.user) {
+    founduser = UserStore.users.find(
+      (userr) => UserStore.user._id == userr._id
+    );
+    userprofile = founduser.profile;
+    UserStore.profile = userprofile;
+  }
 
   return (
     <View style={styles.container}>
@@ -25,7 +29,6 @@ function MainProfile() {
         />
         <Text style={styles.username}>{founduser.username}</Text>
         <Text style={styles.bio}>{userprofile.bio}</Text>
-        {/* <Text>{userStore.calcTotalTrips(profile[0].trips)}</Text> */}
         <UpdateProfileButton />
         <View style={styles.box}>
           <Text style={styles.trips}>
@@ -51,7 +54,7 @@ const styles = StyleSheet.create({
   header: {
     backgroundColor: "#547AA5",
     alignItems: "center",
-    width: 450,
+    width: "100%",
     // height:200,
     height: 150,
   },

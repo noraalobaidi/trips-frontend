@@ -9,7 +9,7 @@ import {
 import { useState } from "react";
 import usersStore from "../../stores/UsersStore";
 
-export default function SignIn({ navigation }) {
+export default function SignIn() {
   const [user, setUser] = useState({
     username: "",
     password: "",
@@ -47,8 +47,6 @@ export default function SignIn({ navigation }) {
             username: "",
             password: "",
           });
-          navigation.navigate("Profile");
-          navigation.initialRouteName = "Profile";
         }}
       >
         <Text style={styles.submitButtonText}> Sign in </Text>
@@ -60,7 +58,7 @@ export default function SignIn({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     paddingTop: 23,
-    width: 300,
+    width: "100%",
   },
   input: {
     margin: 15,
