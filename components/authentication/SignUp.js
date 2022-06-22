@@ -59,14 +59,15 @@ export default function SignUp({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     paddingTop: 23,
-    width: 300,
+    width: "100%",
   },
 
   input: {
     margin: 15,
     padding: 7,
     height: 40,
-    borderColor: "#7a42f4",
+    borderColor: "#D1D1D1",
+    borderWidth: 1,
     borderRadius: 12,
     shadowColor: "#000",
     shadowOffset: {

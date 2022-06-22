@@ -23,16 +23,16 @@ function MainProfile() {
         <Image
           style={styles.image}
           borderRadius={100}
-          source={{ uri: userprofile?.profileImage }}
+          source={{ uri: userprofile.profileImage }}
           alt="Alternate Text"
           size="xl"
         />
-        <Text style={styles.username}>{founduser?.username}</Text>
-        <Text style={styles.bio}>{userprofile?.bio}</Text>
+        <Text style={styles.username}>{founduser.username}</Text>
+        <Text style={styles.bio}>{userprofile.bio}</Text>
         <UpdateProfileButton />
         <View style={styles.box}>
           <Text style={styles.trips}>
-            {UserStore.calcTotalTrips(founduser?.trips)}
+            {UserStore.calcTotalTrips(founduser.trips)}
           </Text>
           <Text style={{ fontSize: 16, color: "black", marginBottom: 10 }}>
             Trips
@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
   header: {
     backgroundColor: "#547AA5",
     alignItems: "center",
-    width: 450,
+    width: "100%",
     // height:200,
     height: 150,
   },
