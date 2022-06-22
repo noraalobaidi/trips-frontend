@@ -154,7 +154,7 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.29,
     shadowRadius: 4.65,
-
+    minWidth: 387,
     elevation: 7,
   },
   text: { margin: 5, paddingLeft: 5 },
