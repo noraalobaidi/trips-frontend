@@ -1,17 +1,17 @@
 import { View, Text, StyleSheet } from "react-native";
 import { Image } from "native-base";
 import React from "react";
-import UserStore from "../../stores/UsersStore";
+import userStore from "../../stores/UsersStore";
 import { observer } from "mobx-react";
 import UpdateProfileButton from "../profile/UpdateProfileButton";
 
 function MainProfile() {
-  const founduser = UserStore.users.find(
-    (userr) => UserStore.user._id == userr._id
+  const founduser = userStore.users.find(
+    (userr) => userStore.user._id == userr._id
   );
   const userprofile = founduser.profile;
   // console.log("profileeee"+Object.entries(userprofile));
-  UserStore.profile = userprofile;
+  userStore.profile = userprofile;
 
   return (
     <View style={styles.container}>
@@ -25,11 +25,11 @@ function MainProfile() {
         />
         <Text style={styles.username}>{founduser.username}</Text>
         <Text style={styles.bio}>{userprofile.bio}</Text>
-        {/* <Text>{UserStore.calcTotalTrips(profile[0].trips)}</Text> */}
+        {/* <Text>{userStore.calcTotalTrips(profile[0].trips)}</Text> */}
         <UpdateProfileButton />
         <View style={styles.box}>
           <Text style={styles.trips}>
-            {UserStore.calcTotalTrips(founduser.trips)}
+            {userStore.calcTotalTrips(founduser.trips)}
           </Text>
           <Text style={{ fontSize: 16, color: "black", marginBottom: 10 }}>
             Trips

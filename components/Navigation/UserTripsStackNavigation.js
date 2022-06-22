@@ -1,33 +1,34 @@
 import { createStackNavigator } from "@react-navigation/stack";
-import TripDetails from "../trip/TripDetails";
+import UserTripDetails from "../trip/UserTripDetails";
 import UserTrips from "../trip/UserTrips";
 import AddTripButton from "../trip/AddTripButton";
 import AddTrip from "../trip/AddTrip";
+import UpdateTrip from "../trip/UpdateTrip";
 
 const { Navigator, Screen } = createStackNavigator();
 
 export default function UserTripsStackNavigator() {
   return (
     <Navigator
-      initialRouteName="Trips"
+      initialRouteName="My Trips"
       screenOptions={{
         headerTintColor: "black",
-        headerStyle: {
-          backgroundColor: "#FFFFFF",
-        },
+        headerStyle: { backgroundColor: "#547AA5" },
+        headerTintColor: "white",
         headerTitleStyle: {
           fontWeight: "bold",
         },
       }}
     >
       <Screen
-        name="Trips"
+        name="My Trips"
         component={UserTrips}
         options={{
           headerRight: () => <AddTripButton />,
         }}
       />
-      <Screen name="Detail" component={TripDetails} />
+      <Screen name="UpdateTrip" component={UpdateTrip} />
+      <Screen name="My Trips Details" component={UserTripDetails} />
       <Screen name="AddTrip" component={AddTrip} />
     </Navigator>
   );

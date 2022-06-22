@@ -12,7 +12,7 @@ import UpdateTripButton from "./UpdateTripButton";
 import tripsStore from "../../stores/tripsStore";
 import userStore from "../../stores/UsersStore";
 
-export default function TripDetails({ route, navigation }) {
+export default function UserTripDetails({ route, navigation }) {
   const { itemId } = route.params;
   const trip = tripsStore.getTripById(itemId);
   const user = userStore.getUserById(trip.user);
@@ -34,7 +34,7 @@ export default function TripDetails({ route, navigation }) {
             <Text style={styles.user}>{user.username}</Text>
           </TouchableOpacity>
           <Text style={styles.description}>{trip.description}</Text>
-          {/* <UpdateTripButton itemId={itemId} /> */}
+          <UpdateTripButton itemId={itemId} />
         </View>
       </ScrollView>
     </SafeAreaView>
