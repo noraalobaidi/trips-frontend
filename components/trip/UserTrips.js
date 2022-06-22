@@ -1,25 +1,16 @@
 import { SafeAreaView, Text, FlatList, StyleSheet } from "react-native";
 import React from "react";
 import tripsStore from "../../stores/tripsStore";
-import TripItem from "./TripItem";
+import UserTripItem from "./UserTripItem";
 import { observer } from "mobx-react";
 import userStore from "../../stores/UsersStore";
 
-function TripList({ navigation }) {
-  const tripsList = tripsStore.trips.filter(
+function UserTripList({ navigation }) {
+  tripsList = tripsStore.trips.filter(
     (trip) => trip.user === userStore.user._id
   );
   function renderTrip({ item: trip }) {
-    return (
-      <TripItem
-        trip={trip}
-        onPress={() => {
-          navigation.navigate("Detail", {
-            itemId: trip._id,
-          });
-        }}
-      />
-    );
+    return <UserTripItem navigation={navigation} trip={trip} />;
   }
 
   return (
@@ -34,7 +25,7 @@ function TripList({ navigation }) {
   );
 }
 
-export default observer(TripList);
+export default observer(UserTripList);
 
 const styles = StyleSheet.create({
   tripsList: {

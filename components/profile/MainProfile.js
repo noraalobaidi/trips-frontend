@@ -1,7 +1,7 @@
 import { View, Text, StyleSheet } from "react-native";
 import { Image } from "native-base";
 import React from "react";
-import UserStore from "../../stores/UsersStore";
+import userStore from "../../stores/UsersStore";
 import { observer } from "mobx-react";
 import UpdateProfileButton from "../profile/UpdateProfileButton";
 import userStore from "../../stores/UsersStore";
@@ -32,7 +32,7 @@ function MainProfile() {
         <UpdateProfileButton />
         <View style={styles.box}>
           <Text style={styles.trips}>
-            {UserStore.calcTotalTrips(founduser.trips)}
+            {userStore.calcTotalTrips(founduser.trips)}
           </Text>
           <Text style={{ fontSize: 16, color: "black", marginBottom: 10 }}>
             Trips
