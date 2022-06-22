@@ -70,6 +70,7 @@ function UpdateProfile() {
           source={{
             uri: img,
           }}
+          
         />
         <View style={styles.text_container}>
           <TouchableOpacity onPress={handleOcr}>

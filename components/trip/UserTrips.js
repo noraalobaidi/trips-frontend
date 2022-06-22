@@ -6,7 +6,7 @@ import { observer } from "mobx-react";
 import userStore from "../../stores/UsersStore";
 
 function UserTripList({ navigation }) {
-  tripsList = tripsStore.trips.filter(
+  const tripsList = tripsStore.trips.filter(
     (trip) => trip.user === userStore.user._id
   );
   function renderTrip({ item: trip }) {
