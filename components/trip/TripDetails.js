@@ -13,7 +13,7 @@ import tripsStore from "../../stores/tripsStore";
 import userStore from "../../stores/UsersStore";
 
 export default function TripDetails({ route, navigation }) {
-  const { itemId } = route.params;
+  const { itemId ,tripp} = route.params;
   const trip = tripsStore.getTripById(itemId);
   const user = userStore.getUserById(trip.user);
   // console.log("userrrrr "+Object.entries(user));
@@ -31,7 +31,7 @@ export default function TripDetails({ route, navigation }) {
               })
             }
           >
-            <Text style={styles.user}>{user.username}</Text>
+            <Text style={styles.user}>@{user.username}</Text>
           </TouchableOpacity>
           <Text style={styles.description}>{trip.description}</Text>
           {/* <UpdateTripButton itemId={itemId} /> */}
@@ -78,5 +78,6 @@ const styles = StyleSheet.create({
     color: "#787878",
     marginTop: 10,
     marginBottom: 16,
+    textAlign:"justify"
   },
 });

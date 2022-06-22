@@ -14,6 +14,7 @@ export default function TripItem({ navigation, trip }) {
       onPress={() => {
         navigation.navigate("Detail", {
           itemId: trip._id,
+          tripp:trip
         });
       }}
     >
