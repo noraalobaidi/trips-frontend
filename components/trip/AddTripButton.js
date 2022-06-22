@@ -10,7 +10,7 @@ export default function AddTripButton() {
     <View>
       <TouchableOpacity
         onPress={() => {
-          navigation.navigate("AddTrip");
+          navigation.navigate("Add Trip");
         }}
       >
         <Button colorScheme={"white"}>Add trip</Button>

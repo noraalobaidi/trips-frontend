@@ -62,6 +62,7 @@ function UpdateProfile() {
         label="Image"
         autoCapitalize="none"
         onChangeText={(img) => setInput({ ...input, profileImage: img })}
+        defaultValue={input.profileImage}
       />
 
       {/* <View style={styles.card_template}>
@@ -93,7 +94,7 @@ function UpdateProfile() {
       />
       <Text>Bio</Text>
       <TextInput
-        style={styles.bio}
+        style={styles.input}
         underlineColorAndroid="transparent"
         placeholder={input.bio}
         label="bio"
@@ -118,14 +119,15 @@ export default observer(UpdateProfile);
 const styles = StyleSheet.create({
   container: {
     padding: 30,
-    width: 300,
+    width: "100%",
     textAlign: "center",
   },
   input: {
     margin: 15,
     padding: 7,
     height: 40,
-    borderColor: "#7a42f4",
+    borderColor: "#D1D1D1",
+    borderWidth: 1,
     borderRadius: 12,
     shadowColor: "#000",
     shadowOffset: {
@@ -134,7 +136,7 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.29,
     shadowRadius: 4.65,
-
+    minWidth: 387,
     elevation: 7,
   },
   submitButton: {
