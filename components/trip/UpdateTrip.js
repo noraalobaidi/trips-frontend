@@ -60,6 +60,8 @@ export default function UpdateTrip({ route, navigation }) {
           await tripsStore.updateTrip(updatedTrip);
           console.log(`/trips/${trip._id}`);
           setUpdatedTrip({
+            _id: "",
+            user: "",
             title: "",
             description: "",
             image: "",
