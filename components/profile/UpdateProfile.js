@@ -15,22 +15,22 @@ function UpdateProfile() {
     // const [img, SetImg] = useState(input.profileImage);
 
     // console.log(Object.entries(input)+"   inputt ")
-    // console.log(input.profileImage+"   inputt image")
+    
 
-    // const [txt, setTxt] = useState(" Pick an image");
+    const [txt, setTxt] = useState(" Pick an image");
     // const handleOcr = async () => {
-      // const result = await ImagePicker.launchImageLibraryAsync();
-      // console.log("handleOcr" + handleOcr);
-      // console.log("resulted image "+Object.values(result));
+    //   const result = await ImagePicker.launchImageLibraryAsync();
+    //   console.log("handleOcr" + handleOcr);
+    //   console.log("resulted image "+Object.values(result));
   
-      // if (!result.cancelled) {
-        // console.log("setteing the image")
-        // const newimg=result.uri;
-        // console.log("new image    "+ typeof newimg);
-        // SetImg(newimg);
-        // console.log("image after   "+ typeof img);
-      // }
-      // console.log("image after   "+img);
+    //   if (!result.cancelled) {
+    //     console.log("setteing the image")
+    //     const newimg=result.uri;
+    //     SetImg(newimg);
+    //     setInput({...input, profileImage: result.uri})
+    //  console.log(input.profileImage+"   inputt image")
+    //   }
+
     // };
       const handleSubmit = () => {
         // event.preventDefault();
@@ -66,6 +66,7 @@ function UpdateProfile() {
           source={{
             uri: img,
           }}
+          
         />
         <View style={styles.text_container}>
           <TouchableOpacity onPress={handleOcr}>

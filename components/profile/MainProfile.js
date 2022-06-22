@@ -4,11 +4,14 @@ import React from "react";
 import UserStore from "../../stores/UsersStore";
 import { observer } from "mobx-react";
 import UpdateProfileButton from "../profile/UpdateProfileButton";
+import tripsStore from "../../stores/tripsStore";
 
 function MainProfile() {
   const founduser = UserStore.users.find(
     (userr) => UserStore.user._id == userr._id
   );
+  const userTrips=tripsStore.trips.filter((trip)=>trip.user==founduser._id);
+  console.log(userTrips);
   const userprofile = founduser.profile;
   // console.log("profileeee"+Object.entries(userprofile));
   UserStore.profile = userprofile;
@@ -29,7 +32,7 @@ function MainProfile() {
         <UpdateProfileButton />
         <View style={styles.box}>
           <Text style={styles.trips}>
-            {UserStore.calcTotalTrips(founduser.trips)}
+            {UserStore.calcTotalTrips(userTrips)}
           </Text>
           <Text style={{ fontSize: 16, color: "black", marginBottom: 10 }}>
             Trips

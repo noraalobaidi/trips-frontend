@@ -3,13 +3,14 @@ import {Image} from "native-base";
 import React from 'react';
 import UserStore from "../../stores/UsersStore"
 import { observer } from 'mobx-react';
+import tripsStore from '../../stores/tripsStore';
 
 
 function ViewProfile({route}) {
   const { user, id } = route.params;
   console.log("user"+user);
   const founduser = UserStore.users.find((user)=>user._id==id);
-
+  const userTrips=tripsStore.trips.filter((trip)=>trip.user==founduser._id);
 const userprofile=founduser.profile;
 // console.log("profileeee"+Object.entries(userprofile));
 
@@ -19,12 +20,12 @@ const userprofile=founduser.profile;
         <View style={styles.header}>
         <Image style={styles.image}borderRadius={100}source={{ uri:userprofile.profileImage }} alt="Alternate Text" size="xl" />
         <Text style={styles.username}>{user.username}</Text>
-      {/* <Text>{UserStore.calcTotalTrips(profile[0].trips)}</Text> */}
-      {/* <View style={styles.box}> */}
+     
+      <View style={styles.box}>
         
-        <Text style={styles.trips}>{UserStore.calcTotalTrips((user.trips))}</Text>
+        <Text style={styles.trips}>{UserStore.calcTotalTrips((userTrips))}</Text>
         <Text style={{fontSize:16,color:"black",marginBottom:10}}>Trips</Text>
-      {/* </View> */}
+      </View>
       <Text style={styles.bio}>{userprofile.bio}</Text>
         </View>
       
