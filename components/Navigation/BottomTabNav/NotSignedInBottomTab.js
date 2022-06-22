@@ -1,17 +1,15 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import { Fontisto } from "@expo/vector-icons";
-import TripList from "../trip/TripList";
-import MainProfile from "../profile/MainProfile";
-import StackNavigator from "./StackNavigation";
-import TripsStackNavigator from "./TripsStackNavigation";
-import UserTripsStackNavigator from "./UserTripsStackNavigation";
-import userStore from "../../stores/UsersStore";
 import { observer } from "mobx-react-lite";
+
+//stack navigators
+import TripsStackNavigator from "../TripsStackNavigation";
+import NotSignedInStackNavigator from "../NotSignedInStackNavigation";
 
 const Tab = createBottomTabNavigator();
 
-function BottomTabNavigator() {
+function NotSignedInBottomTab() {
   return (
     <Tab.Navigator
       initialRouteName="Explore"
@@ -23,7 +21,7 @@ function BottomTabNavigator() {
     >
       <Tab.Screen
         name="Explore"
-        component={TripList}
+        component={TripsStackNavigator}
         options={{
           tabBarLabel: "Explore",
           tabBarIcon: () => (
@@ -32,8 +30,8 @@ function BottomTabNavigator() {
         }}
       />
       <Tab.Screen
-        name="MainProfile"
-        component={StackNavigator}
+        name="Profile"
+        component={NotSignedInStackNavigator}
         options={{
           tabBarLabel: "Profile",
           tabBarIcon: ({ color, size }) => (
@@ -45,4 +43,4 @@ function BottomTabNavigator() {
   );
 }
 
-export default observer(BottomTabNavigator);
+export default observer(NotSignedInBottomTab);

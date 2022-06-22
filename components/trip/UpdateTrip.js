@@ -7,12 +7,18 @@ import {
   TextInput,
 } from "react-native";
 import { useState } from "react";
-import usersStore from "../../stores/UsersStore";
+import tripsStore from "../../stores/tripsStore";
+import { useNavigation } from "@react-navigation/native";
 
-export default function SignIn() {
-  const [user, setUser] = useState({
-    username: "",
-    password: "",
+export default function UpdateTrip({ route, navigation }) {
+  const { itemId } = route.params;
+  const trip = tripsStore.getTripById(itemId);
+  const [updatedTrip, setUpdatedTrip] = useState({
+    _id: trip._id,
+    user: trip.user,
+    title: trip.title,
+    description: trip.description,
+    image: trip.image,
   });
 
   return (
@@ -21,35 +27,47 @@ export default function SignIn() {
         <TextInput
           style={styles.input}
           underlineColorAndroid="transparent"
-          placeholder="Enter username"
-          label="username"
-          value={user.username}
-          autoCapitalize="none"
-          onChangeText={(username) => setUser({ ...user, username })}
+          label="title"
+          value={updatedTrip.title}
+          autoCapitalize="words"
+          onChangeText={(title) => setUpdatedTrip({ ...updatedTrip, title })}
         />
 
         <TextInput
           style={styles.input}
           underlineColorAndroid="transparent"
-          placeholder="Enter password"
-          label="password"
-          secureTextEntry={true}
-          value={user.password}
+          label="description"
+          value={updatedTrip.description}
           autoCapitalize="none"
-          onChangeText={(password) => setUser({ ...user, password })}
+          onChangeText={(description) =>
+            setUpdatedTrip({ ...updatedTrip, description })
+          }
+        />
+
+        <TextInput
+          style={styles.input}
+          underlineColorAndroid="transparent"
+          placeholder="Enter trip image"
+          label="image"
+          value={updatedTrip.image}
+          autoCapitalize="none"
+          onChangeText={(image) => setUpdatedTrip({ ...updatedTrip, image })}
         />
       </View>
       <TouchableOpacity
         style={styles.submitButton}
         onPress={async () => {
-          await usersStore.signin(user);
-          setUser({
-            username: "",
-            password: "",
+          await tripsStore.updateTrip(updatedTrip);
+          console.log(`/trips/${trip._id}`);
+          setUpdatedTrip({
+            title: "",
+            description: "",
+            image: "",
           });
+          navigation.navigate("My Trips");
         }}
       >
-        <Text style={styles.submitButtonText}> Sign in </Text>
+        <Text style={styles.submitButtonText}> update trip </Text>
       </TouchableOpacity>
     </SafeAreaView>
   );
@@ -74,7 +92,6 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.29,
     shadowRadius: 4.65,
-    minWidth: 387,
     elevation: 7,
   },
   submitButton: {
@@ -90,7 +107,6 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.29,
     shadowRadius: 4.65,
-
     elevation: 7,
   },
   submitButtonText: {

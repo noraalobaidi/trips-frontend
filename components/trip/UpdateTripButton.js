@@ -1,23 +1,25 @@
-import { View, StyleSheet } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 import React from "react";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { useNavigation } from "@react-navigation/native";
 import { Button } from "native-base";
 
-export default function UpdateProfileButton() {
+export default function UpdateTripButton({ itemId }) {
   const navigation = useNavigation();
   return (
     <View>
-      <TouchableOpacity onPress={() => navigation.navigate("UpdateProfile")}>
+      <TouchableOpacity
+        onPress={() => navigation.navigate("UpdateTrip", { itemId })}
+      >
         <Button variant="outline" colorScheme="black" style={styles.button}>
-          Edit profile
+          Edit Trip
         </Button>
       </TouchableOpacity>
     </View>
   );
 }
 const styles = StyleSheet.create({
-  button: { width: 150, marginTop: 10 },
+  button: { width: "100%", marginTop: 10 },
 
   // totalTrips:{}
 });

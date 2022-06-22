@@ -1,4 +1,4 @@
-import { SafeAreaView, Text, FlatList, StyleSheet } from "react-native";
+import { SafeAreaView, FlatList, StyleSheet } from "react-native";
 import React from "react";
 import tripsStore from "../../stores/tripsStore";
 import TripItem from "./TripItem";
@@ -6,7 +6,7 @@ import { observer } from "mobx-react";
 
 function TripList({ navigation }) {
   const tripsList = tripsStore.trips;
-  console.log(tripsList);
+  //console.log(tripsList);
   function renderTrip({ item: trip }) {
     return <TripItem navigation={navigation} trip={trip} />;
   }

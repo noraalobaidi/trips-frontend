@@ -1,4 +1,4 @@
-import { makeAutoObservable } from "mobx";
+import { makeAutoObservable, runInAction } from "mobx";
 import userStore from "./UsersStore";
 import instance from "../instance/instance";
 
@@ -24,6 +24,19 @@ class TripsStore {
       this.trips.push(response.data);
     } catch (error) {
       console.error("can't add trip", error);
+    }
+  };
+
+  updateTrip = async (updatedTrip) => {
+    try {
+      console.log(updatedTrip);
+      await instance.put(`/trips/${updatedTrip._id}`, updatedTrip);
+      const trip = Object.assign(
+        this.trips.find((trip) => trip._id == updatedTrip._id),
+        updatedTrip
+      );
+    } catch (error) {
+      console.error("updating error", error);
     }
   };
 

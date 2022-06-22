@@ -1,20 +1,26 @@
 import { View, Text, StyleSheet } from "react-native";
 import { Image } from "native-base";
 import React from "react";
-import UserStore from "../../stores/UsersStore";
+import userStore from "../../stores/UsersStore";
 import { observer } from "mobx-react";
 import UpdateProfileButton from "../profile/UpdateProfileButton";
 import tripsStore from "../../stores/tripsStore";
 
+
+  
+
 function MainProfile() {
-  const founduser = UserStore.users.find(
-    (userr) => UserStore.user._id == userr._id
-  );
-  const userTrips=tripsStore.trips.filter((trip)=>trip.user==founduser._id);
-  console.log(userTrips);
-  const userprofile = founduser.profile;
-  // console.log("profileeee"+Object.entries(userprofile));
-  UserStore.profile = userprofile;
+  let founduser;
+  let userprofile;
+  let userTrips;
+  if (userStore.user) {
+    founduser = userStore.users.find(
+      (userr) => userStore.user._id == userr._id
+    );
+    userprofile = founduser.profile;
+    userStore.profile = userprofile;
+    userTrips=tripsStore.trips.filter((trip)=>trip.user==founduser._id);
+  }
 
   return (
     <View style={styles.container}>
@@ -28,11 +34,10 @@ function MainProfile() {
         />
         <Text style={styles.username}>{founduser.username}</Text>
         <Text style={styles.bio}>{userprofile.bio}</Text>
-        {/* <Text>{UserStore.calcTotalTrips(profile[0].trips)}</Text> */}
         <UpdateProfileButton />
         <View style={styles.box}>
           <Text style={styles.trips}>
-            {UserStore.calcTotalTrips(userTrips)}
+            {userStore.calcTotalTrips(userTrips)}
           </Text>
           <Text style={{ fontSize: 16, color: "black", marginBottom: 10 }}>
             Trips
@@ -54,7 +59,7 @@ const styles = StyleSheet.create({
   header: {
     backgroundColor: "#547AA5",
     alignItems: "center",
-    width: 450,
+    width: "100%",
     // height:200,
     height: 150,
   },

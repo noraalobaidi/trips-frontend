@@ -58,7 +58,7 @@ export default function AddTrip({ navigation }) {
             description: "",
             image: "",
           });
-          navigation.navigate("Trips");
+          navigation.navigate("My Trips");
         }}
       >
         <Text style={styles.submitButtonText}> Add trip </Text>
@@ -70,7 +70,7 @@ export default function AddTrip({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     paddingTop: 23,
-    width: 300,
+    width: "100%",
   },
   input: {
     margin: 15,
@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.29,
     shadowRadius: 4.65,
-    minWidth: 387,
+
     elevation: 7,
   },
   submitButton: {

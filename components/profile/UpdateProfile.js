@@ -1,65 +1,69 @@
-import { View, Text,StyleSheet ,SafeAreaView,TextInput,TouchableOpacity} from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  SafeAreaView,
+  TextInput,
+  TouchableOpacity,
+} from "react-native";
 // import { TouchableOpacity } from 'react-native-gesture-handler'
-import {Image} from "native-base";
-import React from 'react';
+import { Image } from "native-base";
+import React from "react";
 import profile from "../../mainProfileData";
-import userStore from '../../stores/UsersStore';
+import userStore from "../../stores/UsersStore";
 import { useState } from "react";
-import { observer } from 'mobx-react';
+import { observer } from "mobx-react";
 // import * as ImagePicker from 'expo-image-picker';
 
-
 function UpdateProfile() {
-    const [input, setInput] = useState(userStore.profile);
+  const [input, setInput] = useState(userStore.profile);
 
-    // const [img, SetImg] = useState(input.profileImage);
+  // const [img, SetImg] = useState(input.profileImage);
 
-    // console.log(Object.entries(input)+"   inputt ")
-    
+  // console.log(Object.entries(input)+"   inputt ")
+  // console.log(input.profileImage+"   inputt image")
 
-    const [txt, setTxt] = useState(" Pick an image");
-    // const handleOcr = async () => {
-    //   const result = await ImagePicker.launchImageLibraryAsync();
-    //   console.log("handleOcr" + handleOcr);
-    //   console.log("resulted image "+Object.values(result));
-  
-    //   if (!result.cancelled) {
-    //     console.log("setteing the image")
-    //     const newimg=result.uri;
-    //     SetImg(newimg);
-    //     setInput({...input, profileImage: result.uri})
-    //  console.log(input.profileImage+"   inputt image")
-    //   }
+  // const [txt, setTxt] = useState(" Pick an image");
+  // const handleOcr = async () => {
+  // const result = await ImagePicker.launchImageLibraryAsync();
+  // console.log("handleOcr" + handleOcr);
+  // console.log("resulted image "+Object.values(result));
 
-    // };
-      const handleSubmit = () => {
-        // event.preventDefault();
-   const updatedProfile={
-    profile:input
+  // if (!result.cancelled) {
+  // console.log("setteing the image")
+  // const newimg=result.uri;
+  // console.log("new image    "+ typeof newimg);
+  // SetImg(newimg);
+  // console.log("image after   "+ typeof img);
+  // }
+  // console.log("image after   "+img);
+  // };
+  const handleSubmit = () => {
+    // event.preventDefault();
+    const updatedProfile = {
+      profile: input,
+    };
+    console.log(updatedProfile);
+    userStore.updateProfile(updatedProfile);
+
+    alert("Profile updated successfully");
   };
-   console.log(updatedProfile);
-        userStore.updateProfile(updatedProfile);
 
-        alert("Profile updated successfully");
-      };
-    
   return (
-    
     <View style={styles.container}>
-        <View style={styles.header}>
-      </View>
-    
-    <Text>Image</Text>
+      <View style={styles.header}></View>
 
-    <TextInput
-          style={styles.input}
-          underlineColorAndroid="transparent"
-          placeholder={input.profileImage}
-          label="Image"
-          autoCapitalize="none"
-          onChangeText={(img) => setInput({...input, profileImage: img})}
-        />
-         
+      <Text>Image</Text>
+
+      <TextInput
+        style={styles.input}
+        underlineColorAndroid="transparent"
+        placeholder={input.profileImage}
+        label="Image"
+        autoCapitalize="none"
+        onChangeText={(img) => setInput({ ...input, profileImage: img })}
+      />
+
       {/* <View style={styles.card_template}>
         <Image
           style={styles.card_image}
@@ -74,47 +78,48 @@ function UpdateProfile() {
           </TouchableOpacity>
         </View>
       </View> */}
-    
-        <Text>Username</Text>
-         <TextInput
-          style={styles.input}
-          underlineColorAndroid="transparent"
-          placeholder={userStore.user.username}
-          label="username"
-          autoCapitalize="none"
-          editable={false}
-          onChangeText={(usernamee) => setInput({...input, username: usernamee})}
-          
-        />
-        <Text>Bio</Text>
-         <TextInput
-          style={styles.bio}
-          underlineColorAndroid="transparent"
-          placeholder={input.bio}
-          label="bio"
-          autoCapitalize="none"
-          onChangeText={(bioo) => setInput({...input, bio: bioo})}
-          defaultValue={input.bio}
-        />
-         <TouchableOpacity
+
+      <Text>Username</Text>
+      <TextInput
+        style={styles.input}
+        underlineColorAndroid="transparent"
+        placeholder={userStore.user.username}
+        label="username"
+        autoCapitalize="none"
+        editable={false}
+        onChangeText={(usernamee) =>
+          setInput({ ...input, username: usernamee })
+        }
+      />
+      <Text>Bio</Text>
+      <TextInput
+        style={styles.bio}
+        underlineColorAndroid="transparent"
+        placeholder={input.bio}
+        label="bio"
+        autoCapitalize="none"
+        onChangeText={(bioo) => setInput({ ...input, bio: bioo })}
+        defaultValue={input.bio}
+      />
+      <TouchableOpacity
         style={styles.submitButton}
-        onPress={() =>{handleSubmit()}}
+        onPress={() => {
+          handleSubmit();
+        }}
       >
         <Text style={styles.submitButtonText}> Update </Text>
       </TouchableOpacity>
-      </View>
-    
-  )
+    </View>
+  );
 }
 
-export default observer (UpdateProfile);
-
-
+export default observer(UpdateProfile);
 
 const styles = StyleSheet.create({
   container: {
     padding: 30,
     width: 300,
+    textAlign: "center",
   },
   input: {
     margin: 15,
@@ -183,5 +188,4 @@ const styles = StyleSheet.create({
     color: "white",
     textAlign: "center",
   },
-
 });

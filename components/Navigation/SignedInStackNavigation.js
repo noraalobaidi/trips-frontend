@@ -1,23 +1,19 @@
-import React, { useState } from "react";
+import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 
 //screens
 import MainProfile from "../profile/MainProfile";
 import UpdateProfile from "../profile/UpdateProfile";
-import UpdateProfileButton from "../profile/UpdateProfileButton";
 import SignInOrUp from "../authentication/SignInOrUp";
 import SignIn from "../authentication/SignIn";
 import SignUp from "../authentication/SignUp";
 import SignOut from "../authentication/SignOut";
-import userStore from "../../stores/UsersStore";
 
 const { Navigator, Screen } = createStackNavigator();
 
-export default function StackNavigator() {
-  const [mainScreen, setMainScreen] = useState("SignInOrUp");
-
+export default function SignedInStackNavigator() {
   return (
-    <Navigator initialRouteName={mainScreen}>
+    <Navigator initialRouteName="Profile">
       <Screen
         name="Profile"
         component={MainProfile}
