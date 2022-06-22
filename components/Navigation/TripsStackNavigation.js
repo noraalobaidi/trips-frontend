@@ -18,7 +18,14 @@ export default function TripsStackNavigator() {
       }}
     >
       <Screen name="Trips" component={TripList} />
-      <Screen name="Detail" component={TripDetails} />
+      <Screen name="Detail" component={TripDetails}
+       options={({ route }) => ({
+          title: `Trip to ${route.params.tripp.title}`,
+        })}/>
+      <Screen name="userDetail" component={TripDetails}
+       options={({ route }) => ({
+          title: `Trip to ${route.params.tripp.title}`,
+        })}/>
       <Screen name="creatorProfile" component={ViewProfile}
       options={({ route }) => ({
           title: route.params.user.username,
