@@ -78,7 +78,7 @@ class UserStore {
   }
   updateProfile = async (input) => {
     try {
-      await instance.put(`/updateProfile/${this.user._id}`, input);
+      await instance.put("/updateProfile", input);
       runInAction(() => {
         this.users.find((userr) => userr._id == this.user._id).profile =
           input.profile;

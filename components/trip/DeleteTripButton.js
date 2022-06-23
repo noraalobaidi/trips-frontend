@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { View, StyleSheet, Alert } from "react-native";
 import { Button } from "native-base";
 import tripsStore from "../../stores/tripsStore";
@@ -7,11 +7,13 @@ import { useToast } from "native-base";
 
 export default function DeleteTripButton({ itemId }) {
   const toast = useToast();
-  const displayToast=()=>{toast.show({
-    title: "Trip deleted successfully",
-    placement: "top",
-    bg:"red.800"
-  });};
+  const displayToast = () => {
+    toast.show({
+      title: "Trip deleted successfully",
+      placement: "top",
+      bg: "red.800",
+    });
+  };
   const navigation = useNavigation();
 
   const showConfirmDialog = () => {

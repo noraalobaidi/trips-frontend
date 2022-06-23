@@ -6,9 +6,6 @@ import { observer } from "mobx-react";
 import UpdateProfileButton from "../profile/UpdateProfileButton";
 import tripsStore from "../../stores/tripsStore";
 
-
-  
-
 function MainProfile() {
   let founduser;
   let userprofile;
@@ -19,7 +16,7 @@ function MainProfile() {
     );
     userprofile = founduser.profile;
     userStore.profile = userprofile;
-    userTrips=tripsStore.trips.filter((trip)=>trip.user==founduser._id);
+    userTrips = tripsStore.trips.filter((trip) => trip.user == founduser._id);
   }
 
   return (
@@ -81,7 +78,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
-  trips: { fontSize: 20, color: "#547AA5", fontWeight: "700" },
+  trips: { fontSize: 20, color: "#547AA5", fontWeight: "bold" },
 
   // totalTrips:{}
 });
