@@ -13,7 +13,7 @@ import profile from "../../mainProfileData";
 import userStore from "../../stores/UsersStore";
 import { useState } from "react";
 import { observer } from "mobx-react";
-// import * as ImagePicker from 'expo-image-picker';
+import * as ImagePicker from "expo-image-picker";
 import { useNavigation } from "@react-navigation/native";
 import { useToast } from "native-base";
 
@@ -22,37 +22,27 @@ function UpdateProfile() {
   const [input, setInput] = useState(userStore.profile);
   const navigation = useNavigation();
 
-  // const [img, SetImg] = useState(input.profileImage);
+  const [img, SetImg] = useState(input.profileImage);
+  const handleOcr = async () => {
+    const result = await ImagePicker.launchImageLibraryAsync();
+    if (!result.cancelled) {
+      const newimg = result.uri;
+      console.log("new image: \n" + newimg);
+      SetImg(newimg);
+      console.log("updated image:" + img);
+    }
+    setInput({ ...input, profileImage: img });
+  };
 
-  // console.log(Object.entries(input)+"   inputt ")
-  // console.log(input.profileImage+"   inputt image")
-
-  // const [txt, setTxt] = useState(" Pick an image");
-  // const handleOcr = async () => {
-  // const result = await ImagePicker.launchImageLibraryAsync();
-  // console.log("handleOcr" + handleOcr);
-  // console.log("resulted image "+Object.values(result));
-
-  // if (!result.cancelled) {
-  // console.log("setteing the image")
-  // const newimg=result.uri;
-  // console.log("new image    "+ typeof newimg);
-  // SetImg(newimg);
-  // console.log("image after   "+ typeof img);
-  // }
-  // console.log("image after   "+img);
-  // };
-  const handleSubmit = () => {
-    // event.preventDefault();
+  const handleSubmit = async () => {
     toast.show({
       title: "Profile updated successfully",
       placement: "top",
-      bg:"green.800"
+      bg: "green.800",
     });
     const updatedProfile = {
       profile: input,
     };
-    console.log(updatedProfile);
     userStore.updateProfile(updatedProfile);
     // alert("Profile updated successfully");
     navigation.navigate("Profile");
@@ -96,20 +86,17 @@ function UpdateProfile() {
         defaultValue={input.profileImage}
       />
 
-      {/* <View style={styles.card_template}>
-        <Image
-          style={styles.card_image}
-          source={{
-            uri: img,
-          }}
-          
-        />
-        <View style={styles.text_container}>
-          <TouchableOpacity onPress={handleOcr}>
-            <Text style={styles.card_title}>{txt}</Text>
-          </TouchableOpacity>
-        </View>
-      </View> */}
+      <View style={styles.card_template}>
+        <TouchableOpacity onPress={handleOcr}>
+          <Image
+            style={styles.card_image}
+            source={{
+              uri: img,
+            }}
+            alt="profile image"
+          />
+        </TouchableOpacity>
+      </View>
 
       <TouchableOpacity
         style={styles.submitButton}
@@ -131,22 +118,6 @@ const styles = StyleSheet.create({
     width: "100%",
     textAlign: "center",
   },
-  // input: {
-  //   margin: 15,
-  //   padding: 7,
-  //   height: 40,
-  //   borderColor: "#7a42f4",
-  //   borderRadius: 12,
-  //   shadowColor: "#000",
-  //   shadowOffset: {
-  //     width: 0,
-  //     height: 3,
-  //   },
-  //   shadowOpacity: 0.29,
-  //   shadowRadius: 4.65,
-
-  //   elevation: 7,
-  // },
   input: {
     margin: 15,
     padding: 7,

@@ -16,7 +16,6 @@ export default function SignIn() {
   });
 
   const signin = async () => {
-    console.log("skfbjdk");
     await usersStore.signin(user);
     setUser({
       username: "",
