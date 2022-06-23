@@ -9,6 +9,7 @@ import {
 import { useState } from "react";
 import tripsStore from "../../stores/tripsStore";
 import { useNavigation } from "@react-navigation/native";
+import { useToast } from "native-base";
 
 export default function UpdateTrip({ route, navigation }) {
   const { itemId } = route.params;
@@ -20,6 +21,14 @@ export default function UpdateTrip({ route, navigation }) {
     description: trip.description,
     image: trip.image,
   });
+  const toast = useToast();
+  const displayToast = () => {
+    toast.show({
+      title: "Trip updated successfully",
+      placement: "top",
+      bg: "green.800",
+    });
+  };
 
   return (
     <SafeAreaView>
@@ -67,6 +76,7 @@ export default function UpdateTrip({ route, navigation }) {
             image: "",
           });
           navigation.navigate("My Trips");
+          displayToast();
         }}
       >
         <Text style={styles.submitButtonText}> update trip </Text>
