@@ -15,8 +15,10 @@ import { useState } from "react";
 import { observer } from "mobx-react";
 // import * as ImagePicker from 'expo-image-picker';
 import { useNavigation } from "@react-navigation/native";
+import { useToast } from "native-base";
 
 function UpdateProfile() {
+  const toast = useToast();
   const [input, setInput] = useState(userStore.profile);
   const navigation = useNavigation();
 
@@ -42,12 +44,17 @@ function UpdateProfile() {
   // };
   const handleSubmit = () => {
     // event.preventDefault();
+    toast.show({
+      title: "Profile updated successfully",
+      placement: "top",
+      bg:"green.800"
+    });
     const updatedProfile = {
       profile: input,
     };
     console.log(updatedProfile);
     userStore.updateProfile(updatedProfile);
-    alert("Profile updated successfully");
+    // alert("Profile updated successfully");
     navigation.navigate("Profile");
   };
 
@@ -110,7 +117,7 @@ function UpdateProfile() {
           handleSubmit();
         }}
       >
-        <Text style={styles.submitButtonText}> Update </Text>
+        <Text style={styles.submitButtonText}> Save changes </Text>
       </TouchableOpacity>
     </View>
   );
