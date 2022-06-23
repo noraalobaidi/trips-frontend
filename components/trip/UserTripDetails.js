@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Text,
   Image,
@@ -12,16 +12,31 @@ import UpdateTripButton from "./UpdateTripButton";
 import tripsStore from "../../stores/tripsStore";
 import userStore from "../../stores/UsersStore";
 import DeleteTripButton from "./DeleteTripButton";
+import { Entypo } from '@expo/vector-icons';
 
 export default function UserTripDetails({ route, navigation }) {
-  const { itemId } = route.params;
+  const { itemId ,tripp} = route.params;
   const trip = tripsStore.getTripById(itemId);
   const user = userStore.getUserById(trip.user);
   // console.log("userrrrr "+Object.entries(user));
+  const [heart,setHeart]=useState(trip.favorite);
+  console.log("fav before"+heart);
+  const changeheart=()=>{
+    if (heart=="heart-outlined")
+    {setHeart("heart")
+    console.log("fav after"+heart);
+  tripsStore.updateFav(trip,{favorite:"heart"});
+  }
+    else if(heart=="heart")
+    {setHeart("heart-outlined")
+    tripsStore.updateFav(trip,{favorite:"heart-outlined"});}
+  };
+  
   return (
     <SafeAreaView>
       <ScrollView>
         <Image style={styles.image} source={{ uri: trip.image }} />
+        <TouchableOpacity onPress={()=>changeheart()}><View style={styles.heart}><Entypo name={heart} size={24} color="red" /></View></TouchableOpacity>
         <View style={styles.infoContainer}>
           <Text style={styles.name}>{trip.title}</Text>
           <TouchableOpacity
@@ -62,6 +77,11 @@ const styles = StyleSheet.create({
   },
   infoContainer: {
     padding: 20,
+  },
+  heart:{
+    display:"flex",
+    alignItems:"flex-end",
+    marginTop:5
   },
   name: {
     fontSize: 29,

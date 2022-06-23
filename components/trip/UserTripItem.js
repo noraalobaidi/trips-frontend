@@ -14,6 +14,7 @@ function UserTripItem({ navigation, trip }) {
       onPress={() => {
         navigation.navigate("My Trips Details", {
           itemId: trip._id,
+          tripp:trip
         });
       }}
     >

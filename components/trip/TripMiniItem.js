@@ -5,10 +5,12 @@ import {
     TouchableOpacity,
     ImageBackground,
   } from "react-native";
-  import React from "react";
+  import React, { useState } from "react";
   import { useNavigation } from "@react-navigation/native";
+  import { Entypo } from '@expo/vector-icons';
   
-  export default function TripMiniItem({trip }) {
+  export default function TripMiniItem({trip}) {
+    const [heart,setHeart]=useState(trip.favorite);
     const navigation = useNavigation();
     return (
       <TouchableOpacity
@@ -26,6 +28,8 @@ import {
           style={styles.thumb}
           source={{ uri: trip.image }}
         >
+           {heart=="heart" && <View style={styles.heart}><Entypo name={heart} size={24} color="white" /></View>}
+
           <View style={styles.infoContainer}>
             <Text style={styles.name}>{trip.title}</Text>
           </View>
@@ -54,6 +58,12 @@ import {
       height: 130,
       width: "100%",
       borderRadius: 16,
+    },
+    heart:{
+      display:"flex",
+      alignItems:"flex-end",
+      marginTop:5,
+      marginRight:3,
     },
     infoContainer: {
       padding: 12,

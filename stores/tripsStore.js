@@ -40,6 +40,17 @@ class TripsStore {
     }
   };
 
+  updateFav=async(trip,fav)=>{
+    try {
+      console.log(fav);
+      await instance.put(`/trips/updateFav/${trip._id}`, fav);
+      const foundtrip = this.trips.find((tripp) => tripp._id == trip._id).favorite=fav.favorite;
+    } catch (error) {
+      console.error("updating error", error);
+    }
+  };
+  
+
   deleteTrip = async (tripId) => {
     try {
       await instance.delete(`/trips/${tripId}`);
