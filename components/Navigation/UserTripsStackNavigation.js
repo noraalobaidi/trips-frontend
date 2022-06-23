@@ -27,7 +27,10 @@ export default function UserTripsStackNavigator() {
         }}
       />
       <Screen name="UpdateTrip" component={UpdateTrip} />
-      <Screen name="My Trips Details" component={UserTripDetails} />
+      <Screen name="My Trips Details" component={UserTripDetails}
+       options={({ route }) => ({
+          title: `Trip to ${route.params.tripp.title}`,
+        })}/>
       <Screen name="AddTrip" component={AddTrip} 
       options={{title:"Add trip"}}
       />

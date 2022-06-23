@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Text,
   Image,
@@ -11,16 +11,23 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 import UpdateTripButton from "./UpdateTripButton";
 import tripsStore from "../../stores/tripsStore";
 import userStore from "../../stores/UsersStore";
+import { Entypo } from '@expo/vector-icons';
+
 
 export default function TripDetails({ route, navigation }) {
   const { itemId, tripp } = route.params;
   const trip = tripsStore.getTripById(itemId);
   const user = userStore.getUserById(trip.user);
   // console.log("userrrrr "+Object.entries(user));
+  const [heart,setHeart]=useState(trip.favorite);
+  
   return (
     <SafeAreaView>
       <ScrollView>
         <Image style={styles.image} source={{ uri: trip.image }} />
+        {heart=="heart" && <View style={styles.heart}><Entypo name={heart} size={24} color="red" /></View>}
+        
+        
         <View style={styles.infoContainer}>
           <Text style={styles.name}>{trip.title}</Text>
           <TouchableOpacity
@@ -54,9 +61,15 @@ const styles = StyleSheet.create({
     elevation: 1,
     marginVertical: 20,
   },
+ 
   image: {
     height: 300,
     width: "100%",
+  },
+  heart:{
+    display:"flex",
+    alignItems:"flex-end",
+    marginTop:5
   },
   infoContainer: {
     padding: 20,
