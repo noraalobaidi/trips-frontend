@@ -5,9 +5,11 @@ import {
   TouchableOpacity,
   ImageBackground,
 } from "react-native";
-import React from "react";
+import React, { useState } from "react";
 import {observer} from "mobx-react";
+import { Entypo } from '@expo/vector-icons';
 function UserTripItem({ navigation, trip }) {
+const [heart,setHeart]=useState(trip.favorite);
   return (
     <TouchableOpacity
       style={styles.card}
@@ -24,6 +26,7 @@ function UserTripItem({ navigation, trip }) {
         style={styles.thumb}
         source={{ uri: trip.image }}
       >
+         {heart=="heart" && <View style={styles.heart}><Entypo name={heart} size={40} color="white" /></View>}
         <View style={styles.infoContainer}>
           <Text style={styles.name}>{trip.title}</Text>
         </View>
@@ -50,6 +53,13 @@ const styles = StyleSheet.create({
     height: 260,
     width: "100%",
     borderRadius: 16,
+  },
+  heart:{
+    display:"flex",
+    alignItems:"flex-end",
+    marginTop:5,
+    marginRight:10,
+
   },
   infoContainer: {
     padding: 16,

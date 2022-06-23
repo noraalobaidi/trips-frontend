@@ -81,7 +81,8 @@ const styles = StyleSheet.create({
   heart:{
     display:"flex",
     alignItems:"flex-end",
-    marginTop:5
+    marginTop:10,
+    marginRight:12
   },
   name: {
     fontSize: 29,
