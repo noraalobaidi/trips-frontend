@@ -32,7 +32,7 @@ export default function SignedInStackNavigator() {
         options={{
           headerStyle: { backgroundColor: "#547AA5" },
           headerTintColor: "white",
-          title: "Update Profile",
+          title: "Edit Profile",
         }}
       />
       <Screen

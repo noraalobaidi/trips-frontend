@@ -3,8 +3,15 @@ import { View, StyleSheet, Alert } from "react-native";
 import { Button } from "native-base";
 import tripsStore from "../../stores/tripsStore";
 import { useNavigation } from "@react-navigation/native";
+import { useToast } from "native-base";
 
 export default function DeleteTripButton({ itemId }) {
+  const toast = useToast();
+  const displayToast=()=>{toast.show({
+    title: "Trip deleted successfully",
+    placement: "top",
+    bg:"red.800"
+  });};
   const navigation = useNavigation();
 
   const showConfirmDialog = () => {
@@ -18,6 +25,7 @@ export default function DeleteTripButton({ itemId }) {
           onPress: () => {
             tripsStore.deleteTrip(itemId);
             navigation.navigate("My Trips");
+            displayToast();
           },
         },
         // The "No" button

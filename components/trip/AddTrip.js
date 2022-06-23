@@ -63,6 +63,7 @@ export default function AddTrip({ navigation }) {
           toast.show({
             title: "Trip added! Enjoy!",
             placement: "top",
+            bg:"green.800"
           });
           navigation.navigate("My Trips");
         }}
