@@ -132,7 +132,6 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.29,
     shadowRadius: 4.65,
-    minWidth: 387,
     elevation: 7,
   },
   text: { margin: 5, paddingLeft: 5 },
@@ -164,14 +163,17 @@ const styles = StyleSheet.create({
     fontSize: 30,
   },
   card_template: {
-    width: 250,
+    width: "100%",
     height: 250,
     boxShadow: "10px 10px 17px -12px rgba(0,0,0,0.75)",
+    textAlign: "center",
+    alignItems: "center",
   },
   card_image: {
     width: 250,
     height: 250,
     borderRadius: 10,
+    textAlign: "center",
   },
   text_container: {
     position: "absolute",
