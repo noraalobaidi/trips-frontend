@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, StyleSheet } from "react-native";
 import React from "react";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { Button } from "native-base";
@@ -12,7 +12,7 @@ export default function SignOut() {
       <TouchableOpacity
         onPress={() => {
           userStore.signout();
-          navigation.navigate("SignInOrUp");
+          navigation.navigate("Home");
         }}
       >
         <Button colorScheme={"white"}>Sign out</Button>

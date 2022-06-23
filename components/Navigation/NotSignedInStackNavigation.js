@@ -2,7 +2,7 @@ import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 
 //screens
-import SignInOrUp from "../authentication/SignInOrUp";
+import Home from "../authentication/Home";
 import SignIn from "../authentication/SignIn";
 import SignUp from "../authentication/SignUp";
 
@@ -10,7 +10,7 @@ const { Navigator, Screen } = createStackNavigator();
 
 export default function NotSignedInStackNavigator() {
   return (
-    <Navigator initialRouteName="SignInOrUp">
+    <Navigator initialRouteName="Home">
       <Screen
         name="SignIn"
         component={SignIn}
@@ -30,8 +30,8 @@ export default function NotSignedInStackNavigator() {
         }}
       />
       <Screen
-        name="SignInOrUp"
-        component={SignInOrUp}
+        name="Home"
+        component={Home}
         options={{
           headerStyle: { backgroundColor: "#547AA5" },
           headerTintColor: "white",

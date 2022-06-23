@@ -4,7 +4,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 //screens
 import MainProfile from "../profile/MainProfile";
 import UpdateProfile from "../profile/UpdateProfile";
-import SignInOrUp from "../authentication/SignInOrUp";
+import Home from "../authentication/Home";
 import SignIn from "../authentication/SignIn";
 import SignUp from "../authentication/SignUp";
 import SignOut from "../authentication/SignOut";
@@ -54,8 +54,8 @@ export default function SignedInStackNavigator() {
         }}
       />
       <Screen
-        name="SignInOrUp"
-        component={SignInOrUp}
+        name="Home"
+        component={Home}
         options={{
           headerStyle: { backgroundColor: "#547AA5" },
           headerTintColor: "white",

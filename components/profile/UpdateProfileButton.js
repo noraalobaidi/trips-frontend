@@ -18,6 +18,4 @@ export default function UpdateProfileButton() {
 }
 const styles = StyleSheet.create({
   button: { width: 150, marginTop: 10 },
-
-  // totalTrips:{}
 });

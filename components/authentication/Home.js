@@ -1,7 +1,7 @@
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import React from "react";
 
-export default function SignInOrUp({ navigation }) {
+export default function Home({ navigation }) {
   return (
     <View style={styles.container}>
       <Text style={styles.welcome}>Sign in to create your own trips!</Text>

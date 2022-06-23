@@ -8,7 +8,6 @@ import {
 } from "react-native";
 import { useState } from "react";
 import tripsStore from "../../stores/tripsStore";
-import { useNavigation } from "@react-navigation/native";
 import { useToast } from "native-base";
 
 export default function UpdateTrip({ route, navigation }) {
@@ -28,6 +27,22 @@ export default function UpdateTrip({ route, navigation }) {
       placement: "top",
       bg: "green.800",
     });
+  };
+
+  const updatetrip = async () => {
+    await tripsStore.updateTrip(updatedTrip);
+    console.log(`/trips/${trip._id}`);
+    setUpdatedTrip({
+      _id: "",
+      user: "",
+      title: "",
+      description: "",
+      image: "",
+    });
+    navigation.navigate("My Trips Details", {
+      itemId: trip._id,
+    });
+    displayToast();
   };
 
   return (
@@ -63,22 +78,7 @@ export default function UpdateTrip({ route, navigation }) {
           onChangeText={(image) => setUpdatedTrip({ ...updatedTrip, image })}
         />
       </View>
-      <TouchableOpacity
-        style={styles.submitButton}
-        onPress={async () => {
-          await tripsStore.updateTrip(updatedTrip);
-          console.log(`/trips/${trip._id}`);
-          setUpdatedTrip({
-            _id: "",
-            user: "",
-            title: "",
-            description: "",
-            image: "",
-          });
-          navigation.navigate("My Trips");
-          displayToast();
-        }}
-      >
+      <TouchableOpacity style={styles.submitButton} onPress={updatetrip}>
         <Text style={styles.submitButtonText}> update trip </Text>
       </TouchableOpacity>
     </SafeAreaView>

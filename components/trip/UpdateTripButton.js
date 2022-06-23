@@ -23,6 +23,4 @@ export default function UpdateTripButton({ itemId }) {
 }
 const styles = StyleSheet.create({
   button: { width: "100%", marginTop: 10 },
-
-  // totalTrips:{}
 });

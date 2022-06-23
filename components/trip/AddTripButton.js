@@ -7,16 +7,14 @@ import { useNavigation } from "@react-navigation/native";
 export default function AddTripButton() {
   const navigation = useNavigation();
   return (
-    <View>
-      <TouchableOpacity
-        onPress={() => {
-          navigation.navigate("AddTrip");
-        }}
-      >
-        <Button colorScheme={"white"}>Add trip</Button>
-        {/* <Text style={styles.button}>Add trip</Text> */}
-      </TouchableOpacity>
-    </View>
+    <Button
+      colorScheme={"white"}
+      onPress={() => {
+        navigation.navigate("AddTrip");
+      }}
+    >
+      Add trip
+    </Button>
   );
 }
 const styles = StyleSheet.create({

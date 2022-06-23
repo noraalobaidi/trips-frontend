@@ -14,16 +14,11 @@ export default function TripItem({ navigation, trip }) {
       onPress={() => {
         navigation.navigate("Detail", {
           itemId: trip._id,
-          tripp:trip
+          tripp: trip,
         });
       }}
     >
-      <ImageBackground
-        // resizeMode="cover"
-        // opacity={0.6}
-        style={styles.thumb}
-        source={{ uri: trip.image }}
-      >
+      <ImageBackground style={styles.thumb} source={{ uri: trip.image }}>
         <View style={styles.infoContainer}>
           <Text style={styles.name}>{trip.title}</Text>
         </View>
