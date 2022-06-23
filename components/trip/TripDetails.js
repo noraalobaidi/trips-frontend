@@ -13,7 +13,7 @@ import tripsStore from "../../stores/tripsStore";
 import userStore from "../../stores/UsersStore";
 
 export default function TripDetails({ route, navigation }) {
-  const { itemId ,tripp} = route.params;
+  const { itemId, tripp } = route.params;
   const trip = tripsStore.getTripById(itemId);
   const user = userStore.getUserById(trip.user);
   // console.log("userrrrr "+Object.entries(user));
@@ -27,7 +27,6 @@ export default function TripDetails({ route, navigation }) {
             onPress={() =>
               navigation.navigate("creatorProfile", {
                 user: user,
-                id: user._id,
               })
             }
           >
@@ -78,6 +77,6 @@ const styles = StyleSheet.create({
     color: "#787878",
     marginTop: 10,
     marginBottom: 16,
-    textAlign:"justify"
+    textAlign: "justify",
   },
 });

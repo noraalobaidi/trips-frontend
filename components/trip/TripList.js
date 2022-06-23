@@ -6,7 +6,6 @@ import { observer } from "mobx-react";
 
 function TripList({ navigation }) {
   const tripsList = tripsStore.trips;
-  //console.log(tripsList);
   function renderTrip({ item: trip }) {
     return <TripItem navigation={navigation} trip={trip} />;
   }

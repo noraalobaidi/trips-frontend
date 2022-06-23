@@ -15,6 +15,15 @@ export default function SignUp({ navigation }) {
     password: "",
   });
 
+  const signup = async () => {
+    await usersStore.signup(user);
+    setUser({
+      username: "",
+      password: "",
+    });
+    navigation.navigate("Profile");
+  };
+
   return (
     <SafeAreaView>
       <View style={styles.container}>
@@ -39,17 +48,7 @@ export default function SignUp({ navigation }) {
           onChangeText={(password) => setUser({ ...user, password })}
         />
       </View>
-      <TouchableOpacity
-        style={styles.submitButton}
-        onPress={async () => {
-          await usersStore.signup(user);
-          setUser({
-            username: "",
-            password: "",
-          });
-          navigation.navigate("Profile");
-        }}
-      >
+      <TouchableOpacity style={styles.submitButton} onPress={signup}>
         <Text style={styles.submitButtonText}> Sign up </Text>
       </TouchableOpacity>
     </SafeAreaView>

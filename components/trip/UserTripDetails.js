@@ -28,7 +28,6 @@ export default function UserTripDetails({ route, navigation }) {
             onPress={() =>
               navigation.navigate("creatorProfile", {
                 user: user,
-                id: user._id,
               })
             }
           >
@@ -80,6 +79,6 @@ const styles = StyleSheet.create({
     color: "#787878",
     marginTop: 10,
     marginBottom: 16,
-    textAlign:"justify"
+    textAlign: "justify",
   },
 });

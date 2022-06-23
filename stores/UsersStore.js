@@ -15,8 +15,6 @@ class UserStore {
     try {
       const response = await instance.get("/user");
       this.users = response.data;
-
-      //console.log(response.data);
     } catch (error) {
       console.log("userStore -> fetchUsers -> error", error);
     }
@@ -61,7 +59,6 @@ class UserStore {
     await AsyncStorage.setItem("token", userToken);
     instance.defaults.headers.common.Authorization = `Bearer ${userToken}`;
     this.user = jwt_decode(userToken);
-    //console.log("userrrr " + Object.entries(this.user));
   };
 
   checkForToken = async () => {

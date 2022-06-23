@@ -15,6 +15,15 @@ export default function SignIn() {
     password: "",
   });
 
+  const signin = async () => {
+    console.log("skfbjdk");
+    await usersStore.signin(user);
+    setUser({
+      username: "",
+      password: "",
+    });
+  };
+
   return (
     <SafeAreaView>
       <View style={styles.container}>
@@ -39,16 +48,7 @@ export default function SignIn() {
           onChangeText={(password) => setUser({ ...user, password })}
         />
       </View>
-      <TouchableOpacity
-        style={styles.submitButton}
-        onPress={async () => {
-          await usersStore.signin(user);
-          setUser({
-            username: "",
-            password: "",
-          });
-        }}
-      >
+      <TouchableOpacity style={styles.submitButton} onPress={signin}>
         <Text style={styles.submitButtonText}> Sign in </Text>
       </TouchableOpacity>
     </SafeAreaView>

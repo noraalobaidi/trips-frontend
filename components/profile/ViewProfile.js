@@ -1,19 +1,20 @@
-import { View, Text,StyleSheet ,FlatList} from 'react-native';
-import {Image} from "native-base";
-import React from 'react';
-import UserStore from "../../stores/UsersStore"
-import { observer } from 'mobx-react';
-import tripsStore from '../../stores/tripsStore';
-import TripItem from '../trip/TripItem';
-import TripMiniItem from '../trip/TripMiniItem';
+import { View, Text, StyleSheet, FlatList } from "react-native";
+import { Image } from "native-base";
+import React from "react";
+import UserStore from "../../stores/UsersStore";
+import { observer } from "mobx-react";
+import tripsStore from "../../stores/tripsStore";
+import TripMiniItem from "../trip/TripMiniItem";
 
 function ViewProfile({ route }) {
-  const { user, id } = route.params;
-  console.log("user"+user);
-  const founduser = UserStore.users.find((user)=>user._id==id);
-  const userTrips=tripsStore.trips.filter((trip)=>trip.user==founduser._id);
-const userprofile=founduser.profile;
-
+  const { user } = route.params;
+  const id = user._id;
+  //console.log("user" + user);
+  const founduser = UserStore.users.find((findUser) => findUser._id == id);
+  const userTrips = tripsStore.trips.filter(
+    (trip) => trip.user == founduser._id
+  );
+  const userprofile = founduser.profile;
 
   return (
     <View style={styles.container}>
@@ -45,9 +46,11 @@ const userprofile=founduser.profile;
         //   justifyContent: 'space-evenly',
         // }}
         keyExtractor={(item, index) => index.toString()}
-        renderItem={({item:trip}) =><View style={{flex: 0.333,flexDirection: 'column'}}>
-        <TripMiniItem trip={trip}/>
-      </View>}
+        renderItem={({ item: trip }) => (
+          <View style={{ flex: 0.333, flexDirection: "column" }}>
+            <TripMiniItem trip={trip} />
+          </View>
+        )}
       />
     </View>
   );
@@ -59,13 +62,11 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#fff",
     alignItems: "center",
-    // justifyContent: 'center',
   },
   header: {
     backgroundColor: "#547AA5",
     alignItems: "center",
     width: "100%",
-    // height:200,
     height: 150,
   },
   image: {
@@ -90,35 +91,33 @@ const styles = StyleSheet.create({
 
   containerr: {
     flex: 1,
-    paddingTop: 22
-   },
-   item: {
-     padding: 10,
-     fontSize: 18,
-     height: 44,
-   },
-   tripsList: {
-    // backgroundColor:"red"
-
-width:"100%",
-height:10,
-// marginTop:250
+    paddingTop: 22,
   },
-  spaces:{
+  item: {
+    padding: 10,
+    fontSize: 18,
+    height: 44,
+  },
+  tripsList: {
+    width: "100%",
+    height: 10,
+    // marginTop:250
+  },
+  spaces: {
     flex: 1,
-    justifyContent: "space-around"
-  }, tripsList: {
-        // backgroundColor:"red"
-    width:"100%",
-    height:10,
-    marginTop:250
-      },
-  // totalTrips:{}
+    justifyContent: "space-around",
+  },
+  tripsList: {
+    width: "100%",
+    height: 10,
+    marginTop: 250,
+  },
 });
 
-//instagram style 
+//instagram style
 
-{/* <View style={styles.container}>
+{
+  /* <View style={styles.container}>
       <View style={styles.header}>
         <View style={styles.row}>
           <View>
@@ -153,64 +152,65 @@ height:10,
         <TripMiniItem trip={trip}/>
       </View>}
       />
-    </View> */}
+    </View> */
+}
 
-    // const styles = StyleSheet.create({
-    //   container: {
-    //     flex: 1,
-    //     backgroundColor: "#fff",
-    //     alignItems: "center",
-    //     // justifyContent: 'center',
-    //   },
-    //   header: {
-    //     backgroundColor: "#547AA5",
-    //     // alignItems: "center",
-    //     width:"100%",
-    //     // height:200,
-    //     height: 150,
-       
-    //   },
-    //   row:{  display:"flex",
-    //   flexDirection:"row"
-    // },
-    //   image: {
-    //     marginLeft:8,
-    //     borderColor: "#ffffff",
-    //     borderWidth: 3,
-    //     marginTop: 5,
-    //     width: 80,
-    //     height: 80,
-    //   },
-    //   username: { fontSize: 15, fontWeight: "500",color:"white",marginLeft:10,marginTop:5 },
-    //   bio: { fontSize: 16, marginTop: 5, color: "#ffffff",marginLeft:10 },
-    //   box: {
-    //     marginTop: 20,
-    //     // backgroundColor: "#f7f7f7",
-    //     width: 100,
-    //     height: 60,
-    //     borderRadius: 10,
-    //     alignItems: "center",
-    //     justifyContent: "center",
-    //   },
-    //   trips: { fontSize: 20, color: "#ffffff", fontWeight: "700" },
-    //   containerr: {
-    //     flex: 1,
-    //     paddingTop: 22
-    //    },
-    //    item: {
-    //      padding: 10,
-    //      fontSize: 18,
-    //      height: 44,
-    //    },
-    //    tripsList: {
-    //     // backgroundColor:"red"
-    // width:"100%",
-    // height:10,
-    // // marginTop:250
-    //   },
-    //   spaces:{
-    //     flex: 1,
-    //     justifyContent: "space-around"
-    //   }
-    //   // totalTrips:{}
-    // });
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     backgroundColor: "#fff",
+//     alignItems: "center",
+//     // justifyContent: 'center',
+//   },
+//   header: {
+//     backgroundColor: "#547AA5",
+//     // alignItems: "center",
+//     width:"100%",
+//     // height:200,
+//     height: 150,
+
+//   },
+//   row:{  display:"flex",
+//   flexDirection:"row"
+// },
+//   image: {
+//     marginLeft:8,
+//     borderColor: "#ffffff",
+//     borderWidth: 3,
+//     marginTop: 5,
+//     width: 80,
+//     height: 80,
+//   },
+//   username: { fontSize: 15, fontWeight: "500",color:"white",marginLeft:10,marginTop:5 },
+//   bio: { fontSize: 16, marginTop: 5, color: "#ffffff",marginLeft:10 },
+//   box: {
+//     marginTop: 20,
+//     // backgroundColor: "#f7f7f7",
+//     width: 100,
+//     height: 60,
+//     borderRadius: 10,
+//     alignItems: "center",
+//     justifyContent: "center",
+//   },
+//   trips: { fontSize: 20, color: "#ffffff", fontWeight: "700" },
+//   containerr: {
+//     flex: 1,
+//     paddingTop: 22
+//    },
+//    item: {
+//      padding: 10,
+//      fontSize: 18,
+//      height: 44,
+//    },
+//    tripsList: {
+//     // backgroundColor:"red"
+// width:"100%",
+// height:10,
+// // marginTop:250
+//   },
+//   spaces:{
+//     flex: 1,
+//     justifyContent: "space-around"
+//   }
+//   // totalTrips:{}
+// });

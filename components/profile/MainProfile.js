@@ -51,13 +51,11 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#fff",
     alignItems: "center",
-    // justifyContent: 'center',
   },
   header: {
     backgroundColor: "#547AA5",
     alignItems: "center",
     width: "100%",
-    // height:200,
     height: 150,
   },
   image: {
@@ -79,6 +77,4 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   trips: { fontSize: 20, color: "#547AA5", fontWeight: "bold" },
-
-  // totalTrips:{}
 });

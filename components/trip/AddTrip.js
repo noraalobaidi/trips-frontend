@@ -18,6 +18,21 @@ export default function AddTrip({ navigation }) {
     image: "",
   });
 
+  const handleSubmit = async () => {
+    await tripsStore.addTrip(trip);
+    setTrip({
+      title: "",
+      description: "",
+      image: "",
+    });
+    toast.show({
+      title: "Trip added! Enjoy!",
+      placement: "top",
+      bg: "green.800",
+    });
+    navigation.navigate("My Trips");
+  };
+
   return (
     <SafeAreaView>
       <View style={styles.container}>
@@ -51,23 +66,7 @@ export default function AddTrip({ navigation }) {
           onChangeText={(image) => setTrip({ ...trip, image })}
         />
       </View>
-      <TouchableOpacity
-        style={styles.submitButton}
-        onPress={async () => {
-          await tripsStore.addTrip(trip);
-          setTrip({
-            title: "",
-            description: "",
-            image: "",
-          });
-          toast.show({
-            title: "Trip added! Enjoy!",
-            placement: "top",
-            bg:"green.800"
-          });
-          navigation.navigate("My Trips");
-        }}
-      >
+      <TouchableOpacity style={styles.submitButton} onPress={handleSubmit}>
         <Text style={styles.submitButtonText}> Add trip </Text>
       </TouchableOpacity>
     </SafeAreaView>
