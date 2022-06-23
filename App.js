@@ -1,5 +1,8 @@
 import { StyleSheet } from "react-native";
 import { NativeBaseProvider } from "native-base";
+import { configure } from "mobx"
+
+
 
 //navigation
 import { NavigationContainer } from "@react-navigation/native";
@@ -9,7 +12,11 @@ import userStore from "./stores/UsersStore";
 import { observer } from "mobx-react-lite";
 
 function App() {
-  //userStore.user = null;
+  //to remove warning
+  configure({
+    enforceActions: "never",
+})
+  // userStore.user = null;
   return (
     <NativeBaseProvider>
       <NavigationContainer>

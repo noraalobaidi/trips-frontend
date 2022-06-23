@@ -5,10 +5,12 @@ import UserStore from "../../stores/UsersStore";
 import { observer } from "mobx-react";
 import tripsStore from "../../stores/tripsStore";
 import TripMiniItem from "../trip/TripMiniItem";
+import { useNavigation } from "@react-navigation/native";
 
 function ViewProfile({ route }) {
   const { user } = route.params;
   const id = user._id;
+  // if(id==UserStore.user._id){ const navigation = useNavigation();navigation.navigate("MainProfile");}
   //console.log("user" + user);
   const founduser = UserStore.users.find((findUser) => findUser._id == id);
   const userTrips = tripsStore.trips.filter(

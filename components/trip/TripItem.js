@@ -6,8 +6,9 @@ import {
   ImageBackground,
 } from "react-native";
 import React from "react";
+import { observer } from "mobx-react";
 
-export default function TripItem({ navigation, trip }) {
+function TripItem({ navigation, trip }) {
   return (
     <TouchableOpacity
       style={styles.card}
@@ -26,6 +27,8 @@ export default function TripItem({ navigation, trip }) {
     </TouchableOpacity>
   );
 }
+
+export default observer(TripItem);
 
 const styles = StyleSheet.create({
   card: {
